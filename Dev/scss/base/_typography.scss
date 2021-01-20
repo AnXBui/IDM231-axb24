@@ -2,38 +2,110 @@
     Typography
 ============= */
 
-
-// font-family: 'priori-serif',serif;
-//font-weight: 400 / 700
-//font-style: italic
-
-// font-family: 'grand-central',serif;
-//font-weight: 300 / 700
-
 *{
-font-family: 'priori-serif',serif;
+  font-family: 'Space Grotesk', sans-serif;
+  color: $light;
 }
 
+h1,h2,h3,h4,h5{
+font-family: 'grand-central',serif;
+}
+
+h1{
+  font-size: clamp(1.5rem, 1.5vw, 1.5vmax);
+  margin-bottom: 0.5em;
+
+  @include md{
+    font-size: clamp(1.75rem, 2.5vw, 2.5vmax);
+  }
+
+  @include lg{
+    font-size: clamp(1.8rem, 2.5vw, 2.5vmax);
+  }
+}
+
+h2{
+  font-size: clamp(1.35rem, 1.5vw, 2vmax);
+  margin-bottom: 0.5em;
+
+  @include md{
+    font-size: 1.5rem;
+  }
+
+  @include lg{
+    font-size: 1.75rem;
+  }
+}
 
 p{
-  line-height: 150%;
-  max-width: 40ch;
+  font-size: 0.85rem;
+  line-height: 170%;
+
+  @include md{
+    font-size: 0.9rem;
+  }
+
+  @include lg{
+    font-size: 1rem;
+  }
+}
+
+button{
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  line-height: 180%;
+  font-family: 'grand-central',serif;
+
+  @include md{
+    font-size: 1.3rem;
+  }
+
+  @include lg{
+    font-size: 1.4rem;
+  }
+}
+
+label, input{
+  display: block;
+  font-size: 1rem;
+  line-height: 180%;
 
   @include md{
     font-size: 1.1rem;
   }
 
   @include lg{
-    font-size: 1.3rem;
+    font-size: 1.2rem;
   }
 }
 
-.grand{
-font-family: 'grand-central',serif;
-font-weight: 300;
+input[type="date"]{
+  background-color: transparent;
+  outline: 0;
+  box-shadow: 0;
+  border: 0;
+  text-align: center;
+  border-bottom: 2px solid $light;
+  margin: 1em 0;
+  padding: 0.25em;
+  width: 15em;
+  position: relative;
+  letter-spacing: 0.35em;
+
 }
 
-.grandB{
-font-family: 'grand-central',serif;
-font-weight: 700;
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(100%);
+  opacity: 0.5;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  height: 1.75em;
+  margin-top: -0.75em;
+
+}
+
+
+p+p{
+  margin-top: 1em;
 }
