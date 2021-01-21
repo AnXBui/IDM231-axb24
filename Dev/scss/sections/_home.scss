@@ -1,6 +1,9 @@
 /* =============
     Home
 ============= */
+html { overflow: hidden;}
+body { overflow: scroll;}
+
 body {
   background-color: $dark;
   overscroll-behavior: none;
@@ -112,6 +115,63 @@ body {
   justify-content: center;
   align-items: center;
   z-index: 30;
+
+  @include lg{
+    top: 4rem;
+    right: 4rem;
+  }
+
+  > svg {
+    fill: $light;
+    width: 100%;
+    height: 100%;
+  }
+  --beforeScale: 0;
+
+  &::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    background-color: $light;
+    border-radius: 100%;
+    border: 3px solid $light;
+    z-index: -1;
+    transform: scale(var(--beforeScale)) rotateZ(0);
+    transition: transform 0.25s;
+  }
+
+  &:active,
+  &:hover {
+    > svg {
+      fill: $dark;
+    }
+    color: $dark;
+    --beforeScale: 1;
+  }
+}
+
+.seeAllButton{
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 3px solid $light;
+  background-color: $dark;
+  border-radius: 100%;
+  position: fixed;
+  top: 6rem;
+  right: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 30;
+  // opacity: 0.75;
+
+  @include lg{
+    top: 8rem;
+    right: 4rem;
+  }
 
   > svg {
     fill: $light;
@@ -272,7 +332,7 @@ body {
   position: relative;
   pointer-events: none;
   transform-origin: center;
-  animation: rotate 80s linear infinite;
+  // animation: rotate 80s linear infinite;
   --buttonListSize: 85vmax;
   --buttonSize: 8vmax;
   @include md {
@@ -387,6 +447,7 @@ body {
 
   @include lg {
     height: 100vh;
+    grid-template-rows: 1fr;
     grid-template-columns: 1fr 1fr;
   }
 }
@@ -465,7 +526,7 @@ body {
     overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch;
 
-    @media (min-height: 895px) {
+    @media (min-height: 900px) {
       overflow-y: hidden;
       justify-content: center;
       padding: 2rem 2rem 4rem;
@@ -474,6 +535,7 @@ body {
   }
 
   .godIcon {
+    flex-shrink: 0;
     width: 5rem;
     height: 5rem;
     padding: 1rem;
@@ -544,7 +606,7 @@ body {
       bottom: 0;
       padding: 2rem 0;
       position: sticky;
-      @media (min-height: 895px){
+      @media (min-height: 900px){
         position: absolute;
       }
     }
@@ -578,7 +640,7 @@ body {
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -597,8 +659,12 @@ body {
     }
 
     .godFigure{
-      position: relative;
       z-index: 5;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       mask-image: linear-gradient(to top, rgba(black,0.5) 5%, white 50%);
 
       img {
@@ -614,6 +680,11 @@ body {
     .halo{
       position: absolute;
       z-index: 4;
+      width: 34%;
+
+      >*{
+        // fill: url('../img/gold.jpg');
+      }
     }
   }
 
@@ -694,11 +765,11 @@ body {
 }
 
 .nextGod{
-  left: var(--buttonPosition);
+  right: var(--buttonPosition);
 }
 
 .prevGod{
-  right: var(--buttonPosition);
+  left: var(--buttonPosition);
 }
 
 .closeGod{
@@ -747,6 +818,488 @@ body {
     right: 3%;
   }
 }
+
+.godMainWrapper.athena{
+  width: 65vmin;
+  padding-bottom: 150vmin;
+
+  @include md{
+    width: 48vmin;
+    padding-bottom: 105vmin;
+  }
+
+  @include lg{
+    width: 35vmin;
+    padding-bottom: 78vmin;
+  }
+
+  .halo{
+    width: 50%;
+    top: 0%;
+    left: 22%;
+
+    @include lg{
+      width: 45%;
+      left: 25%;
+      top: 0%;
+    }
+  }
+
+  .decoA{
+      width: 25%;
+      bottom: 25%;
+      left: 0;
+  }
+
+  .decoB{
+    width: 25%;
+    top: 20%;
+    right: 5%;
+  }
+}
+
+.cloud{
+  position: absolute;
+}
+
+.cloudA{
+  z-index: 8;
+  top: 35%;
+  left: 10%;
+  width: 10rem;
+
+
+  @include lg{
+    top: 25%;
+    width: 20rem;
+  }
+}
+
+.cloudB{
+  z-index: 10;
+  top: 45%;
+  right: 15%;
+  width: 12rem;
+}
+
+.cloudC{
+  z-index: 3;
+  bottom: 20%;
+  left: 20%;
+  width: 14em;
+  opacity: 0.15;
+}
+
+.godMainWrapper.aphrodite{
+  width: 85vmin;
+  padding-bottom: 150vmin;
+  margin-bottom: -5vmin;
+
+
+  @include md{
+    width: 55vmin;
+    margin-bottom: -7vmin;
+    padding-bottom: 110vmin;
+  }
+
+  @include lg{
+    width: 45vmin;
+    margin-bottom: -5vmin;
+    padding-bottom: 82vmin;
+  }
+
+  .halo{
+    width: 30%;
+    top: 6%;
+    left: 22%;
+
+    @include md{
+      top: 3%;
+    }
+
+    @include lg{
+      width: 28%;
+      left: 24%;
+      top: 1%;
+    }
+  }
+
+  .decoA{
+      width: 85%;
+      top: 18%;
+      left: 7%;
+  }
+
+  .decoB{
+    width: 75%;
+    bottom: 20%;
+    right: 10%;
+  }
+}
+
+.godMainWrapper.hermes{
+  width: 56vmin;
+  padding-bottom: 138vmin;
+
+  @include md{
+    width: 55vmin;
+    margin-bottom: -7vmin;
+    padding-bottom: 110vmin;
+  }
+
+  @include lg{
+    width: 43vmin;
+    margin-bottom: -5vmin;
+    padding-bottom: 78vmin;
+  }
+
+  .halo{
+    width: 50%;
+    top: -6.5%;
+    left: 22%;
+  }
+
+  .decoA{
+      width: 55%;
+      top: 18%;
+      left: 5%;
+  }
+
+  .decoB{
+    width: 75%;
+    bottom: 25%;
+    right: 10%;
+  }
+
+  .decoC{
+    width: 75%;
+    top: 27%;
+    right: 0%;
+  }
+}
+
+.godMainWrapper.artemis{
+  width: 75vmin;
+  padding-bottom: 140vmin;
+  margin-right: -3vmin;
+
+  @include md{
+    width: 57vmin;
+    margin-bottom: -3vmin;
+    padding-bottom: 112vmin;
+  }
+
+  @include lg{
+    width: 43vmin;
+    margin-bottom: -3vmin;
+    padding-bottom: 78vmin;
+  }
+
+  .halo{
+    width: 30%;
+    top: 0%;
+    left: 45%;
+
+    @include lg{
+      top: -3%;
+    }
+  }
+
+  .decoA{
+      width: 8%;
+      top: 5%;
+      right: 30%;
+  }
+
+  .decoB{
+    width: 7%;
+    bottom: 30%;
+    right: 30%;
+  }
+
+  .decoC{
+    width: 7%;
+    top: 30%;
+    left: 3%;
+  }
+}
+
+.godMainWrapper.apollo{
+  width: 78vmin;
+  padding-bottom: 145vmin;
+  margin-right: -3vmin;
+  margin-bottom: -3vmin;
+
+  @include md{
+    width: 55vmin;
+    margin-bottom: -5vmin;
+    padding-bottom: 110vmin;
+  }
+
+  @include lg{
+    width: 43vmin;
+    margin-bottom: -3vmin;
+    padding-bottom: 78vmin;
+  }
+
+  .halo{
+    width: 50%;
+    top: -4%;
+    left: 6.5%;
+
+    @include lg{
+      top: -3%;
+    }
+  }
+
+  .decoA{
+      width: 120%;
+      top: -10%;
+      left: -10%;
+  }
+}
+
+.godMainWrapper.demeter{
+  width: 56vmin;
+  padding-bottom: 138vmin;
+
+  @include md{
+    width: 45vmin;
+    margin-bottom: -3vmin;
+    padding-bottom: 102vmin;
+  }
+
+  @include lg{
+    width: 43vmin;
+    margin-bottom: 0vmin;
+    padding-bottom: 74vmin;
+  }
+
+  .halo{
+    width: 40%;
+    top: -3%;
+    left: 25%;
+  }
+
+  .decoA{
+      width: 30%;
+      top: 5%;
+      left: 5%;
+  }
+
+  .decoB{
+    width: 55%;
+    bottom: 10%;
+    right: 5%;
+  }
+
+}
+
+.godMainWrapper.haphaestus{
+  width: 72vmin;
+  padding-bottom: 130vmin;
+  margin-left: -5vmin;
+
+
+  @include md{
+    width: 55vmin;
+    margin-bottom: -5vmin;
+    padding-bottom: 102vmin;
+  }
+
+  @include lg{
+    width: 40vmin;
+    margin-bottom: -1vmin;
+    padding-bottom: 70vmin;
+  }
+
+  .halo{
+    width: 45%;
+    top: -15%;
+    right: -3%;
+  }
+
+  .decoA{
+      width: 14px;
+      top: -5%;
+      left: 30%;
+  }
+
+  .decoB{
+    width: 14px;
+    bottom: 40%;
+    right: 15%;
+  }
+
+  .decoC{
+    width: 1px;
+    bottom: 40%;
+    left: 15%;
+  }
+
+}
+
+.godMainWrapper.ares{
+  width: 78vmin;
+  padding-bottom: 160vmin;
+
+  @include md{
+    width: 55vmin;
+    margin-bottom: 0vmin;
+    padding-bottom: 110vmin;
+  }
+
+  @include lg{
+    width: 45vmin;
+    margin-bottom: -2vmin;
+    padding-bottom: 85vmin;
+  }
+
+  .halo{
+    width: 50%;
+    top: 25%;
+    left: 22%;
+  }
+
+  .decoA{
+      width: 60%;
+      top: 16%;
+      left: 10%;
+  }
+
+  .decoB{
+    width: 65%;
+    bottom: 25%;
+    right: 10%;
+  }
+}
+
+.godMainWrapper.dionysus{
+  width: 75vmin;
+  padding-bottom: 140vmin;
+  margin-right: -3vmin;
+
+  @include md{
+    width: 57vmin;
+    margin-bottom: -3vmin;
+    padding-bottom: 103vmin;
+  }
+
+  @include lg{
+    width: 43vmin;
+    margin-bottom: -3vmin;
+    padding-bottom: 78vmin;
+  }
+
+  .halo{
+    width: 45%;
+    top: -5%;
+    left: 25%;
+  }
+
+  .decoA{
+      width: 8%;
+      top: 25%;
+      left: 23%;
+  }
+
+  .decoB{
+    width: 28%;
+    bottom: 50%;
+    right: 10%;
+  }
+
+  .decoC{
+    width: 15%;
+    bottom: 30%;
+    left: 20%;
+  }
+
+  .decoD{
+    width: 15%;
+    bottom: 20%;
+    right: 30%;
+  }
+}
+
+.godMainWrapper.hera{
+  width: 75vmin;
+  padding-bottom: 140vmin;
+  margin-left: -7vmin;
+
+  @include md{
+    width: 57vmin;
+    margin-bottom: -3vmin;
+    padding-bottom: 103vmin;
+  }
+
+  @include lg{
+    width: 43vmin;
+    padding-bottom: 75vmin;
+    margin-bottom: 0vmin;
+
+  }
+
+  .halo{
+    width: 38%;
+    top: 0%;
+    left: 35%;
+  }
+
+  .decoA{
+      width: 20%;
+      top: 25%;
+      right: 0;
+  }
+
+  .decoB{
+    width: 30%;
+    bottom: 50%;
+    left: 20%;
+  }
+
+  .decoC{
+    width: 30%;
+    bottom: 20%;
+    right: 0%;
+  }
+}
+
+.godMainWrapper.posidon{
+  width: 78vmin;
+  padding-bottom: 145vmin;
+  margin-left: -7vmin;
+
+  @include md{
+    width: 57vmin;
+    margin-bottom: -3vmin;
+    padding-bottom: 103vmin;
+  }
+
+  @include lg{
+    width: 45vmin;
+    padding-bottom: 78vmin;
+  }
+
+  .halo{
+    width: 38%;
+    top: 3%;
+    left: 35%;
+  }
+
+  .decoA{
+      width: 100%;
+      top: 20%;
+      right: 0;
+  }
+
+  .decoB{
+    width: 60%;
+    bottom: 20%;
+    right: -5%;
+  }
+}
+
 
 .godDetails.hide{
   opacity: 0;
