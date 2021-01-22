@@ -567,9 +567,10 @@ class GodGallery {
 }
 
 
-let masterGallery = new GodGallery('#godGallery');
-masterGallery.init();
 //
-// window.onload = () => {
-// };
+let masterGallery = new GodGallery('#godGallery');
+
+window.onload = () => {
+  masterGallery.init();
+};
 // masterGallery.init();
