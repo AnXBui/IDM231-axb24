@@ -17,11 +17,20 @@ body {
 
 .foilText {
   background-image: url("../img/gold.jpg");
-  filter: brightness(0.75) contrast(1.2);
+  filter: brightness(0.75) contrast(1);
   background-clip: text;
   background-size: cover;
   background-repeat: no-repeat;
   color: transparent !important;
+
+  >div{
+    background-image: url("../img/gold.jpg");
+    filter: brightness(1.1);
+    background-clip: text;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: transparent !important;
+  }
 }
 
 .lightTheme {
@@ -62,9 +71,19 @@ body {
   }
 
   &:active,
-  &:hover {
+  &:hover,
+  &:focus {
     color: $dark;
     --beforeScale: 1;
+  }
+}
+
+button{
+  transform: scale(1) translateZ(0);
+
+  &:focus{
+    outline: 0;
+    // transform: scale(1.1) translateZ(0);
   }
 }
 
@@ -88,7 +107,7 @@ body {
     max-height: 90vh;
     overflow-y: scroll;
     padding: 2rem;
-    background-color: $light;
+    background: rgba($light, 0.85);
     pointer-events: all;
 
     > * {
@@ -119,6 +138,8 @@ body {
   @include lg{
     top: 4rem;
     right: 4rem;
+    width: 3.25rem;
+    height: 3.25rem;
   }
 
   > svg {
@@ -144,7 +165,8 @@ body {
   }
 
   &:active,
-  &:hover {
+  &:hover,
+  &:focus {
     > svg {
       fill: $dark;
     }
@@ -169,8 +191,10 @@ body {
   // opacity: 0.75;
 
   @include lg{
-    top: 8rem;
+    top: 9rem;
     right: 4rem;
+    width: 3.25rem;
+    height: 3.25rem;
   }
 
   > svg {
@@ -196,7 +220,8 @@ body {
   }
 
   &:active,
-  &:hover {
+  &:hover,
+  &:focus {
     > svg {
       fill: $dark;
     }
@@ -271,6 +296,7 @@ body {
   z-index: -1;
   width: 100vw;
   height: 100vh;
+  transition: width 0.5s;
 
   .backgroundSky {
     width: 100%;
@@ -280,6 +306,7 @@ body {
     position: absolute;
     z-index: 1;
     filter: brightness(0.85);
+    transition: width 0.5s, left 0.5s;
   }
 
   .backgroundMountain {
@@ -289,6 +316,8 @@ body {
     z-index: 2;
     min-height: 30vh;
     width: 100%;
+    transition: width 0.5s, left 0.5s, bottom 0.5s;
+    mask-image: linear-gradient(to right,  rgba(black, 0) 0%, black 20%, black 70%, rgba(black, 0) 100%);
 
     > img {
       height: 100%;
@@ -306,6 +335,23 @@ body {
   }
 }
 
+.backgroundImageWrapper.minimize{
+
+  @include lg{
+    .backgroundMountain{
+      width: 130%;
+      left: -35%;
+      bottom: -15%;
+    }
+
+    .backgroundSky{
+      width: 130%;
+      left: -20%;
+    }
+  }
+
+}
+
 .godPortals {
   width: 100%;
   height: 100%;
@@ -321,7 +367,7 @@ body {
 
 .godPortals.inactive{
   opacity: 0;
-  visibility: 0;
+  visibility: hidden;
   pointer-events: none;
 }
 
@@ -332,15 +378,16 @@ body {
   position: relative;
   pointer-events: none;
   transform-origin: center;
+  transition: 0.5s width, 0.5 height;
   // animation: rotate 80s linear infinite;
-  --buttonListSize: 85vmax;
+  --buttonListSize: 80vmax;
   --buttonSize: 8vmax;
   @include md {
-    --buttonListSize: 80vmax;
+    // --buttonListSize: 80vmax;
     --buttonSize: 7vmax;
   }
   @include lg {
-    --buttonListSize: 80vmax;
+    // --buttonListSize: 80vmax;
     --buttonSize: 8vmax;
   }
   @keyframes rotate {
@@ -406,6 +453,16 @@ body {
   }
 }
 
+.godButtonList.minimize{
+  --buttonSize: 15vmin;
+
+  @include md{
+    --buttonSize: 10vmin;
+  }
+
+  // --buttonListSize: 85vmin;
+}
+
 .godButton {
   width: var(--buttonSize);
   height: var(--buttonSize);
@@ -415,7 +472,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: background 0.25s;
+  background: transparent;
+  transition: transform 0.25s, background 0.25s, width 0.25s, height 0.25s;
+  transform: scale(1) translateZ(0);
+  transition-delay: 0.05s;
 
   > svg {
     width: 85%;
@@ -423,11 +483,14 @@ body {
     fill: none;
     stroke: $light;
     stroke-width: 15;
+    transition: stroke 0.25s;
   }
 
   &:active,
-  &:hover {
-    background-color: $light;
+  &:hover,
+  &:focus {
+    background: rgba($light,0.75);
+    transform: scale(1.2) translateZ(0);
 
     > svg {
       stroke: $dark;
@@ -453,7 +516,7 @@ body {
 }
 
 .godContent {
-  background-color: $light;
+  background: $gradientLight;
   padding: 1rem;
   position: relative;
 
@@ -487,6 +550,21 @@ body {
       top: 2rem;
       left: 2rem;
     }
+  }
+
+  &::after{
+    content:'';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../img/landscape.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    mask-image: linear-gradient(to top, rgba(black,100%) 0%, rgba(black, 0) 60%);
+    mix-blend-mode: multiply;
+    pointer-events: none;
   }
 }
 
@@ -526,7 +604,7 @@ body {
     overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch;
 
-    @media (min-height: 900px) {
+    @media (min-height: 950px) {
       overflow-y: hidden;
       justify-content: center;
       padding: 2rem 2rem 4rem;
@@ -606,7 +684,7 @@ body {
       bottom: 0;
       padding: 2rem 0;
       position: sticky;
-      @media (min-height: 900px){
+      @media (min-height: 950px){
         position: absolute;
       }
     }
@@ -656,6 +734,10 @@ body {
       stroke: $light;
       stroke-width: 1;
       opacity: 0.75;
+      // filter: brightness(1);
+      transition: stroke-width 0.25s;
+      pointer-events: none;
+
     }
 
     .godFigure{
@@ -674,15 +756,27 @@ body {
         position: absolute;
         top: 0;
         left: 0;
+        animation: shimmer 2.5s;
+        animation-iteration-count: infinite;
+        animation-timing-function: ease-in-out;
+        animation-direction: alternate;
       }
+
     }
+
+
 
     .halo{
       position: absolute;
       z-index: 4;
       width: 34%;
 
-      >*{
+
+      >path{
+        // animation: shimmer2 1.5s;
+        // animation-iteration-count: infinite;
+        // animation-timing-function: ease-in-out;
+        // animation-direction: alternate;
         // fill: url('../img/gold.jpg');
       }
     }
@@ -705,10 +799,22 @@ body {
       top: 0;
       left:0;
       position: absolute;
+      z-index: -1;
     }
 
     h3{
-      opacity: 0.75;
+      opacity: 0.8;
+    }
+
+    h2{
+      overflow-y: hidden;
+      >div{
+        animation: shimmer 3s;
+        animation-iteration-count: infinite;
+        animation-timing-function: ease-in-out;
+        animation-direction: alternate;
+      }
+      // padding: 0 3.5em;
     }
   }
 }
@@ -757,7 +863,7 @@ body {
 
   }
 
-  &:hover, &:active{
+  &:hover, &:active, &:focus{
     >svg{
       transform: scale(1.2) translateZ(0);
     }
@@ -810,12 +916,17 @@ body {
       width: 12%;
       top: 20%;
       left: 20%;
+      animation-delay: 1s;
+      animation: updown 2s ease-in-out infinite;
+      animation-direction: alternate;
   }
 
   .decoB{
     width: 15%;
     bottom: 20%;
     right: 3%;
+    animation: updown 3s ease-in-out infinite;
+    animation-direction: alternate;
   }
 }
 
@@ -849,17 +960,23 @@ body {
       width: 25%;
       bottom: 25%;
       left: 0;
+      animation: updown 4s linear infinite;
+      animation-direction: alternate;
   }
 
   .decoB{
     width: 25%;
     top: 20%;
     right: 5%;
+    animation-delay: 1s;
+    animation: updown 6s linear infinite;
+    animation-direction: alternate;
   }
 }
 
 .cloud{
   position: absolute;
+  pointer-events: none;
 }
 
 .cloudA{
@@ -867,6 +984,9 @@ body {
   top: 35%;
   left: 10%;
   width: 10rem;
+  animation: sweepA 10s infinite linear;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
 
 
   @include lg{
@@ -875,11 +995,17 @@ body {
   }
 }
 
+
+
 .cloudB{
   z-index: 10;
   top: 45%;
   right: 15%;
   width: 12rem;
+  animation: sweepB 15s infinite linear;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+
 }
 
 .cloudC{
@@ -888,6 +1014,37 @@ body {
   left: 20%;
   width: 14em;
   opacity: 0.15;
+  animation: sweepC 10s infinite linear;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+
+}
+
+@keyframes sweepA{
+  from{
+    transform: translate3d(15%,0,0);
+  }
+  to{
+    transform: translate3d(-15%,0,0);
+  }
+}
+
+@keyframes sweepB{
+  from{
+    transform: translate3d(-20%,0,0);
+  }
+  to{
+    transform: translate3d(20%,0,0);
+  }
+}
+
+@keyframes sweepC{
+  from{
+    transform: translate3d(18%,0,0);
+  }
+  to{
+    transform: translate3d(-18%,0,0);
+  }
 }
 
 .godMainWrapper.aphrodite{
@@ -928,12 +1085,17 @@ body {
       width: 85%;
       top: 18%;
       left: 7%;
+      animation-delay: 1s;
+      animation: updown 6s ease-in-out infinite;
+      animation-direction: alternate;
   }
 
   .decoB{
     width: 75%;
     bottom: 20%;
     right: 10%;
+    animation: updown 3s ease-in-out infinite;
+    animation-direction: alternate;
   }
 }
 
@@ -963,19 +1125,30 @@ body {
       width: 55%;
       top: 18%;
       left: 5%;
+      animation-delay: 1s;
+      animation: sideway 5s linear infinite;
+      animation-direction: alternate;
   }
 
   .decoB{
     width: 75%;
     bottom: 25%;
     right: 10%;
+    animation-delay: 2s;
+    animation: sideway 7s linear infinite;
+    animation-direction: alternate;
   }
 
   .decoC{
     width: 75%;
     top: 27%;
     right: 0%;
+    animation-delay: 0.5s;
+    animation: sideway 6s linear infinite;
+    animation-direction: alternate;
   }
+
+
 }
 
 .godMainWrapper.artemis{
@@ -1009,19 +1182,29 @@ body {
       width: 8%;
       top: 5%;
       right: 30%;
+      animation: updown 3s linear infinite;
+      animation-direction: alternate;
   }
 
   .decoB{
     width: 7%;
     bottom: 30%;
     right: 30%;
+    animation-delay: 1s;
+    animation: updown 3s linear infinite;
+    animation-direction: alternate;
   }
 
   .decoC{
     width: 7%;
     top: 30%;
     left: 3%;
+    animation-delay: 2s;
+    animation: updown 3s linear infinite;
+    animation-direction: alternate;
   }
+
+
 }
 
 .godMainWrapper.apollo{
@@ -1085,12 +1268,17 @@ body {
       width: 30%;
       top: 5%;
       left: 5%;
+      animation: updown 7s ease-in-out infinite;
+      animation-direction: alternate;
   }
 
   .decoB{
     width: 55%;
     bottom: 10%;
     right: 5%;
+    animation-delay: 1s;
+    animation: updown 6s ease-in-out infinite;
+    animation-direction: alternate;
   }
 
 }
@@ -1114,27 +1302,34 @@ body {
   }
 
   .halo{
-    width: 45%;
-    top: -15%;
-    right: -3%;
+    width: 13%;
+    top: -10%;
+    right: 25%;
   }
 
   .decoA{
       width: 14px;
       top: -5%;
       left: 30%;
+      animation: updown 2s ease-in-out infinite;
+      animation-direction: alternate;
   }
 
   .decoB{
     width: 14px;
     bottom: 40%;
     right: 15%;
+    animation: updown 3s ease-in-out infinite;
+    animation-direction: alternate;
   }
 
   .decoC{
     width: 1px;
     bottom: 40%;
     left: 15%;
+    animation-delay: 1s;
+    animation: updown 2s ease-in-out infinite;
+    animation-direction: alternate;
   }
 
 }
@@ -1165,12 +1360,17 @@ body {
       width: 60%;
       top: 16%;
       left: 10%;
+      animation-delay: 1s;
+      animation: updown 2s ease-in-out infinite;
+      animation-direction: alternate;
   }
 
   .decoB{
     width: 65%;
     bottom: 25%;
     right: 10%;
+    animation: updown 3s ease-in-out infinite;
+    animation-direction: alternate;
   }
 }
 
@@ -1201,24 +1401,35 @@ body {
       width: 8%;
       top: 25%;
       left: 23%;
+      animation-delay: 1s;
+      animation: updown 1s ease-in-out infinite;
+      animation-direction: alternate;
   }
 
   .decoB{
     width: 28%;
     bottom: 50%;
     right: 10%;
+    animation-delay: 0.5s;
+    animation: updown 2s ease-in-out infinite;
+    animation-direction: alternate;
   }
 
   .decoC{
     width: 15%;
     bottom: 30%;
     left: 20%;
+    animation-delay: 2s;
+    animation: updown 3s ease-in-out infinite;
+    animation-direction: alternate;
   }
 
   .decoD{
     width: 15%;
     bottom: 20%;
     right: 30%;
+    animation: updown 2s ease-in-out infinite;
+    animation-direction: alternate;
   }
 }
 
@@ -1250,18 +1461,25 @@ body {
       width: 20%;
       top: 25%;
       right: 0;
+      animation-delay: 1s;
+      animation: updown 4s ease-in-out infinite;
+      animation-direction: alternate;
   }
 
   .decoB{
     width: 30%;
     bottom: 50%;
     left: 20%;
+    animation: updown 2s ease-in-out infinite;
+    animation-direction: alternate;
   }
 
   .decoC{
     width: 30%;
     bottom: 20%;
     right: 0%;
+    animation: updown 3s ease-in-out infinite;
+    animation-direction: alternate;
   }
 }
 
@@ -1291,12 +1509,18 @@ body {
       width: 100%;
       top: 20%;
       right: 0;
+      animation-delay: 1s;
+      animation: updown 3s ease-in-out infinite;
+      animation-direction: alternate;
   }
 
   .decoB{
     width: 60%;
     bottom: 20%;
     right: -5%;
+    animation-delay: 1s;
+    animation: updown 6s ease-in-out infinite;
+    animation-direction: alternate;
   }
 }
 
@@ -1304,9 +1528,50 @@ body {
 .godDetails.hide{
   opacity: 0;
   visibility: hidden;
+  display: none;
   pointer-events: none;
 
   *{
     pointer-events: none !important;
+  }
+}
+
+@keyframes shimmer{
+  from{
+    filter: brightness(1);
+    // background-color: red;
+  }
+  to{
+    filter: brightness(1.5);
+    // background-color: blue;
+  }
+}
+
+@keyframes shimmer2{
+  from{
+    filter: brightness(1);
+    // background-color: red;
+  }
+  to{
+    filter: brightness(1.5);
+    // background-color: blue;
+  }
+}
+
+@keyframes sideway{
+  from{
+    transform: translateX(-10%) translateZ(0);
+  }
+  to{
+    transform: translateX(10%) translateZ(0);
+  }
+}
+
+@keyframes updown{
+  from{
+    transform: translateY(-5%) translateZ(0);
+  }
+  to{
+    transform: translateY(5%) translateZ(0);
   }
 }

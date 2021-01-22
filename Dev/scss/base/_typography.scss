@@ -9,6 +9,10 @@
 
 h1,h2,h3,h4,h5{
 font-family: 'grand-central',serif;
+
+>div{
+  font-family: 'grand-central',serif;
+}
 }
 
 h1{
@@ -34,6 +38,29 @@ h2{
 
   @include lg{
     font-size: 1.75rem;
+  }
+
+  >div{
+    font-size: clamp(1.2rem, 1.3vw, 2vmax);
+
+    @include md{
+      font-size: 1.5rem;
+    }
+
+    @include lg{
+      font-size: 2rem;
+    }
+  }
+}
+
+h3{
+  font-size: clamp(1.1rem, 1.4vw, 2vmax);
+  @include md{
+    font-size: 1.35rem;
+  }
+
+  @include lg{
+    font-size: 1.45rem;
   }
 }
 
