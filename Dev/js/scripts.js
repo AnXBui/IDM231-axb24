@@ -22,17 +22,49 @@ infoButton.addEventListener("click", () => {
 infoConfirm.addEventListener("click", hideInfo);
 overlay.addEventListener("click", hideInfo);
 
-hasClass = (element, clss) => {
+const hasClass = (element, clss) => {
   return element.classList.contains(clss);
 };
 
-addClass = (element, clss) => {
+const addClass = (element, clss) => {
   element.classList.add(clss);
 }
 
-rmvClass = (element, clss) => {
+const rmvClass = (element, clss) => {
   element.classList.remove(clss);
 }
+
+const zodiacCalc = (whichMonth, whichDayOfMonth) => {
+  let astroSign;
+      if ((whichMonth == 12 && whichDayOfMonth >= 22) || (whichMonth == 1 && whichDayOfMonth <= 19)) {
+      astroSign = 9;
+    } else if ((whichMonth == 11 && whichDayOfMonth >= 22) || (whichMonth == 12 && whichDayOfMonth <= 21)) {
+      astroSign = 8;
+    } else if ((whichMonth == 10 && whichDayOfMonth >= 24) || (whichMonth == 11 && whichDayOfMonth <= 21)) {
+      astroSign = 7;
+    } else if ((whichMonth == 9 && whichDayOfMonth >= 23) || (whichMonth == 10 && whichDayOfMonth <= 23)) {
+      astroSign = 6;
+    } else if ((whichMonth == 8 && whichDayOfMonth >= 23) || (whichMonth == 9 && whichDayOfMonth <= 22)) {
+      astroSign = 5;
+    } else if ((whichMonth == 7 && whichDayOfMonth >= 23) || (whichMonth == 8 && whichDayOfMonth <= 22)) {
+      astroSign = 4;
+    } else if ((whichMonth == 6 && whichDayOfMonth >= 22) || (whichMonth == 7 && whichDayOfMonth <= 22)) {
+      astroSign = 3;
+    } else if ((whichMonth == 5 && whichDayOfMonth >= 21) || (whichMonth == 6 && whichDayOfMonth <= 21)) {
+      astroSign = 2;
+    } else if ((whichMonth == 4 && whichDayOfMonth >= 20) || (whichMonth == 5 && whichDayOfMonth <= 20)) {
+      astroSign = 1;
+    } else if ((whichMonth == 3 && whichDayOfMonth >= 21) || (whichMonth == 4 && whichDayOfMonth <= 19)) {
+      astroSign = 0;
+    } else if ((whichMonth == 2 && whichDayOfMonth >= 19) || (whichMonth == 3 && whichDayOfMonth <= 20)) {
+      astroSign = 11;
+    } else if ((whichMonth == 1 && whichDayOfMonth >= 20) || (whichMonth == 2 && whichDayOfMonth <= 18)) {
+      astroSign = 10;
+    }
+  return astroSign;
+}
+
+let speaker = document.querySelector('#speaker');
 
 class GodItem {
   constructor(key, index, scene, text) {
@@ -65,6 +97,8 @@ class GodItem {
     this.heading = this.text.querySelector('h2');
     this.paragraph = this.text.querySelectorAll('p');
 
+    this.sound = `sound/${this.key}.mp3`;
+
     let title1 = new SplitText(this.title.querySelector('h2'), {
       type: "chars"
     });
@@ -78,7 +112,7 @@ class GodItem {
     this.in = gsap.timeline({
       paused: true
     });
-    this.in.fromTo(this.figure, 0.25, {
+    this.in.fromTo(this.figure, 0.4, {
         alpha: 0,
         yPercent: -10
       }, {
@@ -124,7 +158,7 @@ class GodItem {
       .fromTo(title2, 0.15, {
         alpha: 0
       }, {
-        alpha: 0.5,
+        alpha: 0.5
         // color: "red"
       }, "start+=0.25")
 
@@ -157,6 +191,8 @@ class GodItem {
     console.log('Showing ' + this.key);
     addClass(this.scene, 'active');
     addClass(this.text, 'active');
+    speaker.src = this.sound;
+    speaker.play();
   }
 
   animateIn() {
@@ -175,7 +211,18 @@ class GodGallery {
     // Getting main DOM
     this.gallery = document.querySelector(godGalleryID);
     this.form = document.querySelector('#mainForm');
+    this.input = document.querySelector('#birthday');
+    console.log(this.input);
+    this.submit = document.querySelector('#submit');
+    this.inputMsg = this.form.querySelector('.inputMessage');
+
     this.portals = document.querySelector('#godPortals');
+    this.oracleMsg = document.querySelector('.oracleMode');
+    this.currentHover;
+    this.godButtons = [];
+
+
+    this.godName = document.querySelector('#godName');
     this.background = document.querySelector('#background');
 
     this.sceneWrapper = this.gallery.querySelector('.godSceneWrapper');
@@ -327,9 +374,10 @@ class GodGallery {
   }
 
   init() {
-    document.querySelectorAll("[data-target]").forEach((element, index) => {
+
+    document.querySelectorAll("[data-target]").forEach(element => {
       let button = element;
-      element.addEventListener("click", (ev) => {
+      element.addEventListener("click", () => {
         let name = button.getAttribute('data-target');
         this.showGod(this.findGod(name));
         this.open();
@@ -366,6 +414,31 @@ class GodGallery {
         this.oracle = false;
       }
     });
+
+    this.submit.addEventListener('click', () => {
+      if (this.input.value){
+        let date = new Date (this.input.value);
+        console.log('submitted');
+        console.log(date);
+        let day = date.getUTCDate();
+        let month = date.getUTCMonth() + 1;
+        console.log('day is' + day);
+        console.log();
+        this.showGod(zodiacCalc(month, day));
+        this.open();
+      } else {
+        console.log('Please enter a value');
+        if (!hasClass(this.inputMsg, 'error')){
+          addClass(this.inputMsg, 'error');
+        }
+      }
+
+      // console.log(day);
+      // ;
+     }
+    );
+
+    this.hoverInit();
   }
 
   hideForm() {
@@ -382,6 +455,8 @@ class GodGallery {
 
   minimizePortals() {
     if (!(hasClass(this.portalsArray, 'minimize'))) {
+      addClass(this.oracleMsg,'show');
+      // this.godName
       addClass(this.portalsArray, 'minimize');
       let tl = gsap.timeline();
       tl.to(this.portalsArray, 0.25, {
@@ -399,6 +474,7 @@ class GodGallery {
 
   maximizePortals() {
     if (hasClass(this.portalsArray, 'minimize')) {
+      rmvClass(this.oracleMsg,'show');
       this.showForm();
       rmvClass(this.portalsArray, 'minimize');
       let tl = gsap.timeline();
@@ -410,6 +486,35 @@ class GodGallery {
         scale: 1
       }, "start");
     }
+  }
+
+  hoverInit(){
+
+    document.querySelectorAll("[data-target]").forEach(element => {
+      const button = element;
+      const name = button.getAttribute('data-target');
+
+      button.addEventListener("mouseenter", () => {
+        let tl = gsap.timeline();
+        addClass(this.godName,'active');
+        tl.to(this.godName,0.125,{opacity: 0, yPercent:-10, onComplete: () => {
+          this.godName.innerHTML = name;
+        }});
+        tl.to(this.godName, 0.125,{opacity: 1, yPercent:0});
+
+
+      });
+      button.addEventListener("mouseleave", () => {
+        let tl = gsap.timeline();
+        rmvClass(this.godName,'active');
+        tl.to(this.godName,0.125,{opacity: 0, yPercent:-10, onComplete: () => {
+          this.godName.innerHTML = null;
+        }});
+        tl.to(this.godName, 0.125,{opacity: 1, yPercent:0});
+
+
+      });
+    })
   }
 
   pausePortals(dur) {
@@ -487,6 +592,14 @@ class GodGallery {
       if (!this.oracle) {
         this.pausePortals(0);
       }
+
+      if (hasClass(this.inputMsg, 'error')){
+        rmvClass(this.inputMsg, 'error');
+      }
+
+      if (hasClass(this.oracleMsg, 'show')){
+        rmvClass(this.oracleMsg, 'show');
+      }
     }
   }
 
@@ -503,6 +616,8 @@ class GodGallery {
       }
       this.resumePortals(0.15);
       this.opened = false;
+      speaker.pause();
+      this.input.value=null;
     }
 
 
@@ -534,6 +649,7 @@ class GodGallery {
       this.activeGod = index;
     } else {
       console.log('already active: ' + index);
+      speaker.play();
     }
   }
 
@@ -568,9 +684,23 @@ class GodGallery {
 
 
 //
-let masterGallery = new GodGallery('#godGallery');
+const body = document.querySelector('body');
+const portals = document.querySelector('.godButtonList');
+const form = document.querySelector('.form');
+
+
+gsap.set(body,{alpha: 0})
+gsap.set(body,{visibility:'hidden'});
+// gsap.set(portals,{scale: 0.5, alpha: 0});
+
 
 window.onload = () => {
+
+  gsap.set(body,{visibility:'visible'});
+  let tl = gsap.timeline();
+  tl.fromTo(body,1,{alpha: 0},{alpha: 1},'start')
+  tl.fromTo(portals,1.5,{scale: 0.5, alpha: 0},{scale: 1, alpha: 1},'start')
+  tl.fromTo(form,1.75,{yPercent:-15, alpha: 0},{yPercent:0, alpha: 1},'start')
+  let masterGallery = new GodGallery('#godGallery');
   masterGallery.init();
 };
-// masterGallery.init();
