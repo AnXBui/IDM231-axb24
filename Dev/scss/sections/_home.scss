@@ -125,7 +125,7 @@ button{
 .moreInfoButton {
   width: 2.75rem;
   height: 2.75rem;
-  border: 3px solid $light;
+  border: 1px solid $light;
   background-color: $dark;
   border-radius: 100%;
   position: fixed;
@@ -135,10 +135,11 @@ button{
   justify-content: center;
   align-items: center;
   z-index: 30;
+  opacity: 0.75;
 
   @include lg{
-    top: 4rem;
-    right: 4rem;
+    top: 3.5rem;
+    right: 3.5rem;
     width: 3.25rem;
     height: 3.25rem;
   }
@@ -179,21 +180,22 @@ button{
 .seeAllButton{
   width: 2.75rem;
   height: 2.75rem;
-  border: 3px solid $light;
+  border: 1px solid $light;
   background-color: $dark;
   border-radius: 100%;
   position: fixed;
-  top: 6rem;
-  right: 2rem;
+  top: 2rem;
+  right: 5.25rem;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 30;
+  opacity: 0.75;
   // opacity: 0.75;
 
   @include lg{
-    top: 9rem;
-    right: 4rem;
+    top: 8rem;
+    right: 3.5rem;
     width: 3.25rem;
     height: 3.25rem;
   }
@@ -223,12 +225,81 @@ button{
   &:active,
   &:hover,
   &:focus {
+    opacity: 1;
     > svg {
       fill: $dark;
     }
     color: $dark;
     --beforeScale: 1;
   }
+}
+
+#soundButton{
+  position: fixed;
+  width: 2.75rem;
+  height: 2.75rem;
+  top: 2rem;
+  right: 8.5rem;
+  border: 1px solid $light;
+  border-radius: 100%;
+  color: $light;
+  --muted: 0;
+  --sounded: 1;
+  --beforeScale: 0;
+  z-index: 20;
+  opacity: 0.75;
+  background-color: $dark;
+
+  @include lg{
+    top: auto;
+    right: 3.5rem;
+    bottom: 3.5rem;
+    width: 3.25rem;
+    height: 3.25rem;
+  }
+  >svg{
+    width: 100%;
+    height: 100%;
+    fill: currentColor;
+  }
+
+  .muted{
+    opacity: var(--muted);
+    transition: opacity 0.25s;
+  }
+
+  .sounded{
+    opacity: var(--sounded);
+    transition: opacity 0.25s;
+  }
+
+
+  &::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    background-color: $light;
+    border-radius: 100%;
+    border: 3px solid $light;
+    z-index: -1;
+    transform: scale(var(--beforeScale)) rotateZ(0);
+    transition: transform 0.25s;
+  }
+
+  &:hover, &:active{
+    --beforeScale:1;
+    > svg {
+      fill: $dark;
+    }
+  }
+}
+
+#soundButton.muted{
+  --muted: 1;
+  --sounded: 0;
 }
 
 .moreInfo.hide {
@@ -1667,13 +1738,15 @@ button{
   }
 }
 
+
+
 @keyframes shimmer{
   from{
-    filter: brightness(1);
+    opacity: 0.9;
     // background-color: red;
   }
   to{
-    filter: brightness(1.5);
+    opacity: 1;
     // background-color: blue;
   }
 }

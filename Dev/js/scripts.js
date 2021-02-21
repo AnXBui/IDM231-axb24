@@ -65,6 +65,22 @@ const zodiacCalc = (whichMonth, whichDayOfMonth) => {
 }
 
 let speaker = document.querySelector('#speaker');
+let soundTgl = {state:'on', obj:document.querySelector('#soundButton')};
+soundTgl.obj.addEventListener('click', () => {
+  if (soundTgl.state == 'on'){
+    speaker.volume = 0;
+    soundTgl.state = 'off';
+    if (!hasClass(soundTgl.obj,'muted')){
+      addClass(soundTgl.obj,'muted');
+    }
+  } else {
+    speaker.volume = 1;
+    soundTgl.state = 'on';
+    if (hasClass(soundTgl.obj,'muted')){
+      rmvClass(soundTgl.obj,'muted');
+    }
+  }
+})
 
 class GodItem {
   constructor(key, index, scene, text) {
@@ -686,6 +702,8 @@ class GodGallery {
 //
 const body = document.querySelector('body');
 const portals = document.querySelector('.godButtonList');
+const mountain = document.querySelector('.backgroundMountain');
+const ui = document.querySelectorAll('.mainUi');
 const form = document.querySelector('.form');
 
 
@@ -700,7 +718,9 @@ window.onload = () => {
   let tl = gsap.timeline();
   tl.fromTo(body,1,{alpha: 0},{alpha: 1},'start')
   tl.fromTo(portals,1.5,{scale: 0.5, alpha: 0},{scale: 1, alpha: 1},'start')
+  tl.fromTo(mountain,1.2,{yPercent: 30, scaleY: 0.85, alpha: 0},{yPercent: 0,  scaleY: 1, alpha: 1},'start')
   tl.fromTo(form,1.75,{yPercent:-15, alpha: 0},{yPercent:0, alpha: 1},'start')
+  tl.fromTo(ui,1.5,{ xPercent: 30, alpha: 0},{xPercent: 0, alpha: 1,stagger:0.5},'start')
   let masterGallery = new GodGallery('#godGallery');
   masterGallery.init();
 };

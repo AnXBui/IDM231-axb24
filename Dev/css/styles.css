@@ -789,7 +789,7 @@ button:focus {
 .moreInfoButton {
   width: 2.75rem;
   height: 2.75rem;
-  border: 3px solid #f4f4ea;
+  border: 1px solid #f4f4ea;
   background-color: #1b2354;
   border-radius: 100%;
   position: fixed;
@@ -799,12 +799,13 @@ button:focus {
   justify-content: center;
   align-items: center;
   z-index: 30;
+  opacity: 0.75;
   --beforeScale: 0;
 }
 @media (min-width: 992px) {
   .moreInfoButton {
-    top: 4rem;
-    right: 4rem;
+    top: 3.5rem;
+    right: 3.5rem;
     width: 3.25rem;
     height: 3.25rem;
   }
@@ -839,22 +840,23 @@ button:focus {
 .seeAllButton {
   width: 2.75rem;
   height: 2.75rem;
-  border: 3px solid #f4f4ea;
+  border: 1px solid #f4f4ea;
   background-color: #1b2354;
   border-radius: 100%;
   position: fixed;
-  top: 6rem;
-  right: 2rem;
+  top: 2rem;
+  right: 5.25rem;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 30;
+  opacity: 0.75;
   --beforeScale: 0;
 }
 @media (min-width: 992px) {
   .seeAllButton {
-    top: 9rem;
-    right: 4rem;
+    top: 8rem;
+    right: 3.5rem;
     width: 3.25rem;
     height: 3.25rem;
   }
@@ -879,11 +881,76 @@ button:focus {
   transition: transform 0.25s;
 }
 .seeAllButton:active, .seeAllButton:hover, .seeAllButton:focus {
+  opacity: 1;
   color: #1b2354;
   --beforeScale: 1;
 }
 .seeAllButton:active > svg, .seeAllButton:hover > svg, .seeAllButton:focus > svg {
   fill: #1b2354;
+}
+
+#soundButton {
+  position: fixed;
+  width: 2.75rem;
+  height: 2.75rem;
+  top: 2rem;
+  right: 8.5rem;
+  border: 1px solid #f4f4ea;
+  border-radius: 100%;
+  color: #f4f4ea;
+  --muted: 0;
+  --sounded: 1;
+  --beforeScale: 0;
+  z-index: 20;
+  opacity: 0.75;
+  background-color: #1b2354;
+}
+@media (min-width: 992px) {
+  #soundButton {
+    top: auto;
+    right: 3.5rem;
+    bottom: 3.5rem;
+    width: 3.25rem;
+    height: 3.25rem;
+  }
+}
+#soundButton > svg {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+#soundButton .muted {
+  opacity: var(--muted);
+  transition: opacity 0.25s;
+}
+#soundButton .sounded {
+  opacity: var(--sounded);
+  transition: opacity 0.25s;
+}
+#soundButton::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  background-color: #f4f4ea;
+  border-radius: 100%;
+  border: 3px solid #f4f4ea;
+  z-index: -1;
+  transform: scale(var(--beforeScale)) rotateZ(0);
+  transition: transform 0.25s;
+}
+#soundButton:hover, #soundButton:active {
+  --beforeScale:1;
+}
+#soundButton:hover > svg, #soundButton:active > svg {
+  fill: #1b2354;
+}
+
+#soundButton.muted {
+  --muted: 1;
+  --sounded: 0;
 }
 
 .moreInfo.hide {
@@ -2372,23 +2439,19 @@ button:focus {
 
 @-webkit-keyframes shimmer {
   from {
-    -webkit-filter: brightness(1);
-            filter: brightness(1);
+    opacity: 0.9;
   }
   to {
-    -webkit-filter: brightness(1.5);
-            filter: brightness(1.5);
+    opacity: 1;
   }
 }
 
 @keyframes shimmer {
   from {
-    -webkit-filter: brightness(1);
-            filter: brightness(1);
+    opacity: 0.9;
   }
   to {
-    -webkit-filter: brightness(1.5);
-            filter: brightness(1.5);
+    opacity: 1;
   }
 }
 @-webkit-keyframes sky {
