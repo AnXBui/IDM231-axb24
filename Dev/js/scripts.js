@@ -373,8 +373,7 @@ class GodGallery {
         onComplete: () => {
           this.hideGallery();
         }
-      }, "-=0.15")
-
+      }, "-=0.15");
 
 
 
@@ -472,7 +471,6 @@ class GodGallery {
   minimizePortals() {
     if (!(hasClass(this.portalsArray, 'minimize'))) {
       addClass(this.oracleMsg,'show');
-      // this.godName
       addClass(this.portalsArray, 'minimize');
       let tl = gsap.timeline();
       tl.to(this.portalsArray, 0.25, {
@@ -490,12 +488,16 @@ class GodGallery {
 
   maximizePortals() {
     if (hasClass(this.portalsArray, 'minimize')) {
+      let portalSize = '80vmax';
+      if (window.matchMedia("(min-width: 992px)").matches){
+        portalSize = '95vmin';
+      }
       rmvClass(this.oracleMsg,'show');
       this.showForm();
       rmvClass(this.portalsArray, 'minimize');
       let tl = gsap.timeline();
       tl.to(this.portalsArray, 0.25, {
-        "--buttonListSize": "80vmax"
+        "--buttonListSize": portalSize
       }, "start")
       tl.to(this.form, 0.25, {
         alpha: 1,

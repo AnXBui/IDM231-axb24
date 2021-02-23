@@ -477,8 +477,8 @@ button{
     --buttonSize: 7vmax;
   }
   @include lg {
-    // --buttonListSize: 80vmax;
-    --buttonSize: 8vmax;
+    --buttonListSize: 95vmin;
+    --buttonSize: 10vmin;
   }
   @keyframes rotate {
     from {
@@ -494,7 +494,7 @@ button{
     position: absolute;
     pointer-events: all;
     top: 0;
-    left: calc(50% - 2rem);
+    left: calc(50% - (var(--buttonSize) / 2));
     padding: 2px;
     overflow: visible;
     transform-origin: center calc(var(--buttonListSize) / 2);

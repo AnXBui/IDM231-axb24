@@ -1127,7 +1127,8 @@ button:focus {
 }
 @media (min-width: 992px) {
   .godButtonList {
-    --buttonSize: 8vmax;
+    --buttonListSize: 95vmin;
+    --buttonSize: 10vmin;
   }
 }
 @-webkit-keyframes rotate {
@@ -1150,7 +1151,7 @@ button:focus {
   position: absolute;
   pointer-events: all;
   top: 0;
-  left: calc(50% - 2rem);
+  left: calc(50% - (var(--buttonSize) / 2));
   padding: 2px;
   overflow: visible;
   transform-origin: center calc(var(--buttonListSize) / 2);
