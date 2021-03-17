@@ -34,8 +34,8 @@
         <label for="birthday">
           Enter your birthday below
           <input autocomplete="bday" id="birthday" type="date" name="birthday">
-          <p class='inputMessage'>Please enter a date</p>
         </label>
+        <p class='inputMessage'>Please enter a date</p>
         <button id="submit" class="outlineCircleButton">Enter</button>
       </div>
     </div>
@@ -48,14 +48,14 @@
       <source type="image/webp" srcset="img/sky_300.webp 300w, img/sky_400.webp 400w, img/sky_800.webp 800w, img/sky_1600.webp 1600w" sizes="100vw">
       <source type="image/jp2" srcset="img/sky_300.jp2 300w, img/sky_400.jp2 400w, img/sky_800.jp2 800w, img/sky_1600.jp2 1600w" sizes="100vw">
       <source type="image/jpg" srcset="img/sky_300.jpg 300w, img/sky_400.jpg 400w, img/sky_800.jpg 800w, img/sky_1600.jpg 1600w" sizes="100vw">
-      <img src="img/sky_1600.jpg" width="100%" height="100%" alt="Starry night sky">
+      <img src="img/sky_1600.jpg" width="1920" height="1080" alt="Starry night sky">
     </picture>
 
     <picture class="backgroundMountain">
       <source type="image/webp" srcset="img/mountain_250.webp 250w, img/mountain_400.webp 400w, img/mountain_800.webp 800w, img/mountain_1600.webp 1600w" sizes="100vw">
       <source type="image/jp2" srcset="img/mountain_300.jp2 300w, img/mountain_400.jp2 400w, img/mountain_800.jp2 800w, img/mountain_1600.jp2 1600w" sizes="100vw">
       <source type="image/png" srcset="img/mountain_300.png 300w, img/mountain_400.png 400w, img/mountain_800.png 800w, img/mountain_1600.png 1600w" sizes="100vw">
-      <img src="img/mountain_1600.png" width="100%" height="100%" alt="Mt.Olympus at night">
+      <img src="img/mountain_1600.png" width="1920" height="1080" alt="Mt.Olympus at night">
     </picture>
   </div>
 
@@ -67,36 +67,47 @@
 
   <button id="seeAllButton" class="seeAllButton mainUi" aria-label="See all Olympians">
     <svg viewBox="0 0 16 16">
-      <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
-      <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+      <path
+        d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+      <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
     </svg>
   </button>
 
   <aside id="moreInfo" class="moreInfo hide">
-    <div class="lightTheme">
+    <div class="lightTheme infoMain">
       <h2>Discover your<br> Olympian heritage</h2>
       <p>In the ancient Greek world, the Twelve great gods and goddesses of the Greeks were referred to as the Olympian Gods, or the Twelve Olympians. The name of this powerful group of gods comes from Mount Olympus, where the council of 12 met to
         discuss matters. </p>
-      <p>Simply <b>enter your birthday</b> to see which of these Olympians are your patron god( based on the Western Zodiac system.) You can also click on any of the symbols to explore specific Olympian! If need some help seeing all the gods, simply click the
-      <span>
-        <svg viewBox="0 0 16 16" aria-label="See all Olympians">
-          <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
-          <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
-        </svg>
-      </span>button to pause the animation.</p>
+      <p>Simply <b>enter your birthday</b> to see which of these Olympians are your patron god( based on the Western Zodiac system.) You can also click on any of the symbols to explore specific Olympian! If need some help seeing all the gods, simply
+        click the
+        <span>
+          <svg viewBox="0 0 16 16" aria-label="See all Olympians">
+            <path
+              d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+            <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
+          </svg>
+        </span>(or press the <b>O</b> key) button to pause the animation.</p>
       <button id="infoConfirm" class="buttonSolid">Got it!</button>
     </div>
   </aside>
 
+  <div class="keyboardControls hide">
+    <p>Press <b>E</b> to open god panel</p>
+    <p>Use <b>arrow keys</b> to go to prev / next god</p>
+    <p>Use <b>ESC</b> key to close god panel</p>
+  </div>
+
   <button id="soundButton" class='mainUi' aria-label="Toggle page sound">
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-volume-up-fill" viewBox="0 0 16 16">
       <g class='muted'>
-        <path d="M6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06zm7.137 2.096a.5.5 0 0 1 0 .708L12.207 8l1.647 1.646a.5.5 0 0 1-.708.708L11.5 8.707l-1.646 1.647a.5.5 0 0 1-.708-.708L10.793 8 9.146 6.354a.5.5 0 1 1 .708-.708L11.5 7.293l1.646-1.647a.5.5 0 0 1 .708 0z"/>
+        <path
+          d="M6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06zm7.137 2.096a.5.5 0 0 1 0 .708L12.207 8l1.647 1.646a.5.5 0 0 1-.708.708L11.5 8.707l-1.646 1.647a.5.5 0 0 1-.708-.708L10.793 8 9.146 6.354a.5.5 0 1 1 .708-.708L11.5 7.293l1.646-1.647a.5.5 0 0 1 .708 0z" />
       </g>
       <g class='sounded'>
-        <path d="M11.536 14.01A8.473 8.473 0 0 0 14.026 8a8.473 8.473 0 0 0-2.49-6.01l-.708.707A7.476 7.476 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303l.708.707z"/>
-        <path d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.483 5.483 0 0 1 11.025 8a5.483 5.483 0 0 1-1.61 3.89l.706.706z"/>
-        <path d="M8.707 11.182A4.486 4.486 0 0 0 10.025 8a4.486 4.486 0 0 0-1.318-3.182L8 5.525A3.489 3.489 0 0 1 9.025 8 3.49 3.49 0 0 1 8 10.475l.707.707zM6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06z"/>
+        <path d="M11.536 14.01A8.473 8.473 0 0 0 14.026 8a8.473 8.473 0 0 0-2.49-6.01l-.708.707A7.476 7.476 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303l.708.707z" />
+        <path d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.483 5.483 0 0 1 11.025 8a5.483 5.483 0 0 1-1.61 3.89l.706.706z" />
+        <path
+          d="M8.707 11.182A4.486 4.486 0 0 0 10.025 8a4.486 4.486 0 0 0-1.318-3.182L8 5.525A3.489 3.489 0 0 1 9.025 8 3.49 3.49 0 0 1 8 10.475l.707.707zM6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06z" />
       </g>
     </svg>
   </button>
@@ -234,19 +245,19 @@
 
           <picture class="godFigure">
             <source type="image/png" srcset="img/gods/athena_250.png 250w, img/gods/athena_400.png 400w, img/gods/athena_800.png 800w, img/gods/athena_1600.png 1600w" sizes="(min-width: 992px) 30vw,50vw">
-            <img src="img/gods/athena_1600.png" width="800" height="100%" loading="lazy" alt="Athena">
+            <img src="img/gods/athena_1600.png" width="800" height="900" loading="lazy" alt="Athena">
           </picture>
 
           <svg class="lowerLayer deco decoA" overflow="visible" viewBox="0 0 76.9 108.5">
-            <path class="decoSVG" d="M24.3 1.1l23.3 23.3-23.3 23.2L1.1 24.3 24.3 1.1m0-1.1L0 24.3l24.3 24.3 24.3-24.3L24.3 0z"/>
-            <path class="decoSVG" d="M52.6 30.4l23.3 23.3L52.6 77 29.3 53.7l23.3-23.3m0-1L28.3 53.7 52.6 78l24.3-24.3-24.3-24.3z"/>
-            <path class="decoSVG" d="M25.2 60.9l23.3 23.3-23.3 23.3L1.9 84.2l23.3-23.3m0-1L.9 84.2l24.3 24.3 24.3-24.3-24.3-24.3z"/>
+            <path class="decoSVG" d="M24.3 1.1l23.3 23.3-23.3 23.2L1.1 24.3 24.3 1.1m0-1.1L0 24.3l24.3 24.3 24.3-24.3L24.3 0z" />
+            <path class="decoSVG" d="M52.6 30.4l23.3 23.3L52.6 77 29.3 53.7l23.3-23.3m0-1L28.3 53.7 52.6 78l24.3-24.3-24.3-24.3z" />
+            <path class="decoSVG" d="M25.2 60.9l23.3 23.3-23.3 23.3L1.9 84.2l23.3-23.3m0-1L.9 84.2l24.3 24.3 24.3-24.3-24.3-24.3z" />
           </svg>
 
           <svg class="upperLayer deco decoB" overflow="visible" viewBox="0 0 76 125.4">
-              <path class="decoSVG" d="M30.3 1.1l29.2 29.2-29.2 29.2L1.1 30.3 30.3 1.1m0-1.1L0 30.3l30.3 30.3 30.3-30.3L30.3 0z"/>
-              <path class="decoSVG" d="M51.7 56.6L75 79.8l-23.3 23.3-23.2-23.3 23.2-23.2m0-1.1L27.4 79.8l24.3 24.3L76 79.8 51.7 55.5z"/>
-              <path class="decoSVG" d="M33.7 98.9l12.7 12.7-12.7 12.7L21 111.6l12.7-12.7m0-1.1l-13.8 13.8 13.8 13.8 13.8-13.8-13.8-13.8z"/>
+            <path class="decoSVG" d="M30.3 1.1l29.2 29.2-29.2 29.2L1.1 30.3 30.3 1.1m0-1.1L0 30.3l30.3 30.3 30.3-30.3L30.3 0z" />
+            <path class="decoSVG" d="M51.7 56.6L75 79.8l-23.3 23.3-23.2-23.3 23.2-23.2m0-1.1L27.4 79.8l24.3 24.3L76 79.8 51.7 55.5z" />
+            <path class="decoSVG" d="M33.7 98.9l12.7 12.7-12.7 12.7L21 111.6l12.7-12.7m0-1.1l-13.8 13.8 13.8 13.8 13.8-13.8-13.8-13.8z" />
           </svg>
 
         </div>
@@ -270,7 +281,7 @@
 
           <picture class="godFigure">
             <source type="image/png" srcset="img/gods/venus_250.png 250w, img/gods/venus_400.png 400w, img/gods/venus_800.png 800w, img/gods/venus_1600.png 1600w" sizes="(min-width: 992px) 30vw,50vw">
-            <img src="img/gods/venus_1600.png" width="800" height="100%" loading="lazy" alt="Aphrodite">
+            <img src="img/gods/venus_1600.png" width="800" height="900" loading="lazy" alt="Aphrodite">
           </picture>
 
           <svg class="upperLayer deco decoA" overflow="visible" viewBox="0 0 361.5 187.3">
@@ -305,7 +316,7 @@
 
           <picture class="godFigure">
             <source type="image/png" srcset="img/gods/hermes_250.png 250w, img/gods/hermes_400.png 400w, img/gods/hermes_800.png 800w, img/gods/hermes_1600.png 1600w" sizes="(min-width: 992px) 30vw,50vw">
-            <img src="img/gods/hermes_1600.png" width="800" height="100%" loading="lazy" alt="Hermes">
+            <img src="img/gods/hermes_1600.png" width="800" height="900" loading="lazy" alt="Hermes">
           </picture>
 
           <svg class="lowerLayer deco decoA" overflow="visible" viewBox="0 0 136.6 49.1">
@@ -340,7 +351,7 @@
 
           <picture class="godFigure">
             <source type="image/png" srcset="img/gods/artemis_250.png 250w, img/gods/artemis_400.png 400w, img/gods/artemis_800.png 800w, img/gods/artemis_1600.png 1600w" sizes="(min-width: 992px) 30vw,50vw">
-            <img src="img/gods/artemis_1600.png" width="800" height="100%" loading="lazy" alt="Artemis">
+            <img src="img/gods/artemis_1600.png" width="800" height="900" loading="lazy" alt="Artemis">
           </picture>
 
           <svg class="lowerLayer deco decoA" overflow="visible" viewBox="0 0 28.7 105.7">
@@ -383,21 +394,18 @@
 
           <picture class="godFigure">
             <source type="image/png" srcset="img/gods/apollo_250.png 250w, img/gods/apollo_400.png 400w, img/gods/apollo_800.png 800w, img/gods/apollo_1600.png 1600w" sizes="(min-width: 992px) 30vw,50vw">
-            <img src="img/gods/apollo_1600.png" width="800" height="100%" loading="lazy" alt="Apollo">
+            <img src="img/gods/apollo_1600.png" width="800" height="900" loading="lazy" alt="Apollo">
           </picture>
 
           <svg class="upperLayer deco decoA" overflow="visible" viewBox="0 0 456.9 704.9">
 
-            <line class="decoSVG" x1="156.4" x2="140.8" y1="592.1" y2="704.8"/>
-            <line class="decoSVG" x1="246.3" x2="412.6" y1="269.8" y2="602.2"/>
-            <line class="decoSVG" x1="338.5" x2="456.7" y1="262" y2="321.7"/>
-            <line class="decoSVG" x1="290.5" x2="386.6" y1="123" y2="123"/>
-            <line class="decoSVG" x1="256.5" x2="323" y1="45.1" y2=".3"/>
-            <line class="decoSVG" x1="100.7" x2="118.6" y1="2.9" y2="33.6"/>
-            <line class="decoSVG" x1="87.7" y1="133.9" y2="133.9" class="st0"/>
-
-
-
+            <line class="decoSVG" x1="156.4" x2="140.8" y1="592.1" y2="704.8" />
+            <line class="decoSVG" x1="246.3" x2="412.6" y1="269.8" y2="602.2" />
+            <line class="decoSVG" x1="338.5" x2="456.7" y1="262" y2="321.7" />
+            <line class="decoSVG" x1="290.5" x2="386.6" y1="123" y2="123" />
+            <line class="decoSVG" x1="256.5" x2="323" y1="45.1" y2=".3" />
+            <line class="decoSVG" x1="100.7" x2="118.6" y1="2.9" y2="33.6" />
+            <line class="decoSVG st0" x1="87.7" y1="133.9" y2="133.9"/>
           </svg>
         </div>
 
@@ -420,12 +428,12 @@
 
           <picture class="godFigure">
             <source type="image/png" srcset="img/gods/demeter_250.png 250w, img/gods/demeter_400.png 400w, img/gods/demeter_800.png 800w, img/gods/demeter_1600.png 1600w" sizes="(min-width: 992px) 30vw,50vw">
-            <img src="img/gods/demeter_1600.png" width="800" height="100%" loading="lazy" alt="Demeter">
+            <img src="img/gods/demeter_1600.png" width="800" height="900" loading="lazy" alt="Demeter">
           </picture>
 
           <svg class="lowerLayer deco decoA" viewBox="0 0 99.5 131.6">
-            <path class="decoSVG" d="M99.4 131.1S22 101.1 22 0M68.4 111.6s-16.9 10-48.6 0c0 0 8.6-12.6 48.6 0z"  />
-            <path class="decoSVG" d="M54.1 96S27 94.5 8.4 70.8c0 0 24.3-2.9 45.7 25.2zM34.9 66.9S12.5 62.5.8 36.9c0-.1 17 .6 34.1 30zM26.1 39.5s-14-1.8-19.5-24c-.1-.1 16.7 9.4 19.5 24z"  />
+            <path class="decoSVG" d="M99.4 131.1S22 101.1 22 0M68.4 111.6s-16.9 10-48.6 0c0 0 8.6-12.6 48.6 0z" />
+            <path class="decoSVG" d="M54.1 96S27 94.5 8.4 70.8c0 0 24.3-2.9 45.7 25.2zM34.9 66.9S12.5 62.5.8 36.9c0-.1 17 .6 34.1 30zM26.1 39.5s-14-1.8-19.5-24c-.1-.1 16.7 9.4 19.5 24z" />
           </svg>
 
 
@@ -444,7 +452,7 @@
       <div data-god="haphaestus" class="godScene">
         <div class="godMainWrapper haphaestus">
 
-          <svg class="halo" viewbox="0 0 55 202.8" overflow="visible" viewBox="0 0 51.7 202.2">
+          <svg class="halo" overflow="visible" viewBox="0 0 51.7 202.2">
             <defs>
               <pattern id="goldFoil7" patternUnits="userSpaceOnUse" width="100%" height="100%">
                 <image href="img/gold.jpg" x="0" y="0" width="350" height="245" />
@@ -455,18 +463,18 @@
 
           <picture class="godFigure">
             <source type="image/png" srcset="img/gods/hepha_250.png 250w, img/gods/hepha_400.png 400w, img/gods/hepha_800.png 800w, img/gods/hepha_1600.png 1600w" sizes="(min-width: 992px) 30vw,50vw">
-            <img src="img/gods/hepha_1600.png" width="800" height="100%" loading="lazy" alt="Haphaestus">
+            <img src="img/gods/hepha_1600.png" width="800" height="900" loading="lazy" alt="Haphaestus">
           </picture>
 
 
           <svg class="upperLayer deco decoA" overflow="visible" viewBox="0 0 12.5 226.9">
-            <path class="decoSVG" d="M.4 0v180.3"  />
-            <path class="decoSVG" d="M12.1 46.6v180.3"  />
+            <path class="decoSVG" d="M.4 0v180.3" />
+            <path class="decoSVG" d="M12.1 46.6v180.3" />
           </svg>
 
           <svg class="upperLayer deco decoB" overflow="visible" viewBox="0 0 12.5 226.9">
-            <path class="decoSVG" d="M.4 0v180.3"  />
-            <path class="decoSVG" d="M12.1 46.6v180.3"  />
+            <path class="decoSVG" d="M.4 0v180.3" />
+            <path class="decoSVG" d="M12.1 46.6v180.3" />
           </svg>
 
           <svg class="lowerLayer deco decoC" overflow="visible" viewBox="0 0 0.8 135.4">
@@ -492,15 +500,15 @@
 
           <picture class="godFigure">
             <source type="image/png" srcset="img/gods/ares_250.png 250w, img/gods/ares_400.png 400w, img/gods/ares_800.png 800w, img/gods/ares_1600.png 1600w" sizes="(min-width: 992px) 30vw,50vw">
-            <img src="img/gods/ares_1600.png" width="800" height="100%" loading="lazy" alt="Ares">
+            <img src="img/gods/ares_1600.png" width="800" height="900" loading="lazy" alt="Ares">
           </picture>
 
           <svg class="lowerLayer deco decoA" overflow="visible" viewBox="0 0 308.6 291.2">
-            <path class="decoSVG" d="M304.2 290.8L.9 162.4"  />
-            <path class="decoSVG" d="M27.7 190.6L.9 162.4h38.7"  />
+            <path class="decoSVG" d="M304.2 290.8L.9 162.4" />
+            <path class="decoSVG" d="M27.7 190.6L.9 162.4h38.7" />
             <g>
-              <path class="decoSVG" d="M107.5.3L308 261.6"  />
-              <path class="decoSVG" d="M298.5 223.8l9.5 37.8-33.7-19.1"  />
+              <path class="decoSVG" d="M107.5.3L308 261.6" />
+              <path class="decoSVG" d="M298.5 223.8l9.5 37.8-33.7-19.1" />
             </g>
           </svg>
 
@@ -530,7 +538,7 @@
 
           <picture class="godFigure">
             <source type="image/png" srcset="img/gods/zeus_250.png 250w, img/gods/zeus_400.png 400w, img/gods/zeus_800.png 800w, img/gods/zeus_1600.png 1600w" sizes="(min-width: 992px) 30vw,50vw">
-            <img src="img/gods/zeus_1600.png" width="800" height="100%" loading="lazy" alt="Zeus">
+            <img src="img/gods/zeus_1600.png" width="800" height="900" loading="lazy" alt="Zeus">
           </picture>
 
           <svg class="lowerLayer deco decoA" viewBox="0 0 58.9 279.7">
@@ -566,7 +574,7 @@
 
           <picture class="godFigure">
             <source type="image/png" srcset="img/gods/dio_250.png 250w, img/gods/dio_400.png 400w, img/gods/dio_800.png 800w, img/gods/dio_1600.png 1600w" sizes="(min-width: 992px) 30vw,50vw">
-            <img src="img/gods/dio_1600.png" width="800" height="100%" loading="lazy" alt="Dionysus">
+            <img src="img/gods/dio_1600.png" width="800" height="900" loading="lazy" alt="Dionysus">
           </picture>
 
 
@@ -579,13 +587,13 @@
           </svg>
 
           <svg class="upperLayer deco decoC" overflow="visible" viewBox="0 0 57.5 97.1">
-            <circle class="decoSVG" cx="28.8" cy="28.8" r="28.3"  />
-            <circle class="decoSVG" cx="34.6" cy="84.7" r="11.9"  />
+            <circle class="decoSVG" cx="28.8" cy="28.8" r="28.3" />
+            <circle class="decoSVG" cx="34.6" cy="84.7" r="11.9" />
           </svg>
 
           <svg class="lowerLayer deco decoD" overflow="visible" viewBox="0 0 65.3 89">
-            <circle class="decoSVG" cx="28.8" cy="60.3" r="28.3"  />
-            <circle class="decoSVG" cx="51.8" cy="13.5" r="13"  />
+            <circle class="decoSVG" cx="28.8" cy="60.3" r="28.3" />
+            <circle class="decoSVG" cx="51.8" cy="13.5" r="13" />
           </svg>
         </div>
 
@@ -608,7 +616,7 @@
 
           <picture class="godFigure">
             <source type="image/png" srcset="img/gods/hera_250.png 250w, img/gods/hera_400.png 400w, img/gods/hera_800.png 800w, img/gods/hera_1600.png 1600w" sizes="(min-width: 992px) 30vw,50vw">
-            <img src="img/gods/hera_1600.png" width="800" height="100%" loading="lazy" alt="Hera">
+            <img src="img/gods/hera_1600.png" width="800" height="900" loading="lazy" alt="Hera">
           </picture>
 
           <svg class="upperLayer deco decoA" overflow="visible" viewBox="0 0 94 47.5">
@@ -644,20 +652,19 @@
 
           <picture class="godFigure">
             <source type="image/png" srcset="img/gods/posidon_250.png 250w, img/gods/posidon_400.png 400w, img/gods/posidon_800.png 800w, img/gods/posidon_1600.png 1600w" sizes="(min-width: 992px) 30vw,50vw">
-            <img src="img/gods/posidon_1600.png" width="800" height="100%" loading="lazy" alt="Posidon">
+            <img src="img/gods/posidon_1600.png" width="800" height="900" loading="lazy" alt="Posidon">
           </picture>
 
           <svg class="lowerLayer deco decoA" overflow="visible" viewBox="0 0 422.2 237.8">
-            <path class="decoSVG" d="M2.3 227.8s11.7-27.2 57.1-27.2 61.3-23.7 61.3-23.7 20.3-27.8 61.7-26.7c41.4 1.1 54.7-24.5 54.7-24.5"  />
+            <path class="decoSVG" d="M2.3 227.8s11.7-27.2 57.1-27.2 61.3-23.7 61.3-23.7 20.3-27.8 61.7-26.7c41.4 1.1 54.7-24.5 54.7-24.5" />
             <path class="decoSVG"
-              d="M3.3 237.6s11.7-27.2 57.1-27.2 61.3-23.7 61.3-23.7 20.3-27.8 61.7-26.7c41.4 1.1 54.7-24.5 54.7-24.5M.3 216.1s11.7-27.2 57.1-27.2 61.3-23.7 61.3-23.7 20.3-27.8 61.7-26.7c41.4 1.1 54.7-24.5 54.7-24.5M186 113.9s11.7-27.2 57.1-27.2S304.4 63 304.4 63s20.3-27.8 61.7-26.7c41.4 1.1 54.7-24.5 54.7-24.5"
-               />
-            <path class="decoSVG" d="M187 123.8s11.7-27.2 57.1-27.2 61.3-23.7 61.3-23.7 20.3-27.8 61.7-26.7 54.7-24.5 54.7-24.5M184 102.3s11.7-27.2 57.1-27.2 61.3-23.7 61.3-23.7 20.3-27.8 61.7-26.7S418.8.2 418.8.2"  />
+              d="M3.3 237.6s11.7-27.2 57.1-27.2 61.3-23.7 61.3-23.7 20.3-27.8 61.7-26.7c41.4 1.1 54.7-24.5 54.7-24.5M.3 216.1s11.7-27.2 57.1-27.2 61.3-23.7 61.3-23.7 20.3-27.8 61.7-26.7c41.4 1.1 54.7-24.5 54.7-24.5M186 113.9s11.7-27.2 57.1-27.2S304.4 63 304.4 63s20.3-27.8 61.7-26.7c41.4 1.1 54.7-24.5 54.7-24.5" />
+            <path class="decoSVG" d="M187 123.8s11.7-27.2 57.1-27.2 61.3-23.7 61.3-23.7 20.3-27.8 61.7-26.7 54.7-24.5 54.7-24.5M184 102.3s11.7-27.2 57.1-27.2 61.3-23.7 61.3-23.7 20.3-27.8 61.7-26.7S418.8.2 418.8.2" />
           </svg>
 
           <svg class="upperLayer deco decoB" overflow="visible" viewBox="0 0 258.8 123.9">
-            <path class="decoSVG" d="M2.5 113.9s12.7-27.2 62-27.2S131 63 131 63s22-27.8 67-26.7 59.4-24.5 59.4-24.5"  />
-            <path class="decoSVG" d="M3.6 123.8s12.7-27.2 62-27.2 66.6-23.7 66.6-23.7 22-27.8 67-26.7 59.4-24.5 59.4-24.5M.3 102.3s12.7-27.2 62-27.2 66.6-23.7 66.6-23.7 22-27.8 67-26.7S255.3.2 255.3.2"  />
+            <path class="decoSVG" d="M2.5 113.9s12.7-27.2 62-27.2S131 63 131 63s22-27.8 67-26.7 59.4-24.5 59.4-24.5" />
+            <path class="decoSVG" d="M3.6 123.8s12.7-27.2 62-27.2 66.6-23.7 66.6-23.7 22-27.8 67-26.7 59.4-24.5 59.4-24.5M.3 102.3s12.7-27.2 62-27.2 66.6-23.7 66.6-23.7 22-27.8 67-26.7S255.3.2 255.3.2" />
           </svg>
 
         </div>
@@ -670,17 +677,17 @@
 
       <picture class="cloud cloudA">
         <source type="image/png" srcset="img/scene/cloud1_150.png 150w, img/scene/cloud1_400.png 400w, img/scene/cloud1_800.png 800w" sizes="30rem">
-        <img src="img/scene/cloud1_800.png" width="800" height="100%" loading="lazy" alt="Cloud floating by">
+        <img src="img/scene/cloud1_800.png" loading="lazy" alt="Cloud floating by">
       </picture>
 
       <picture class="cloud cloudB">
         <source type="image/png" srcset="img/scene/cloud2_150.png 150w, img/scene/cloud2_400.png 400w, img/scene/cloud2_800.png 800w" sizes="30rem">
-        <img src="img/scene/cloud2_800.png" width="800" height="100%" loading="lazy" alt="Clouds floating by">
+        <img src="img/scene/cloud2_800.png" loading="lazy" alt="Clouds floating by">
       </picture>
 
       <picture class="cloud cloudC">
         <source type="image/png" srcset="img/scene/cloud3_150.png 150w, img/scene/cloud3_400.png 400w, img/scene/cloud3_800.png 800w" sizes="30rem">
-        <img src="img/scene/cloud3_800.png" width="800" height="100%" loading="lazy" alt="Cloud floating by">
+        <img src="img/scene/cloud3_800.png" loading="lazy" alt="Clouds floating by">
       </picture>
 
 
@@ -762,7 +769,7 @@
 
           <svg class="godIcon" overflow="visible" viewBox="0 0 300.7 300.7">
             <circle class="iconSVG" cx="149" cy="143.6" r="47" />
-            <path class="iconSVG"  d="M147.9 190.7V242m-21.4-21.4h42.7M109.4 60.3c2.3 21.8 21.8 37.7 43.7 35.4 18.7-1.9 33.5-16.7 35.4-35.4" />
+            <path class="iconSVG" d="M147.9 190.7V242m-21.4-21.4h42.7M109.4 60.3c2.3 21.8 21.8 37.7 43.7 35.4 18.7-1.9 33.5-16.7 35.4-35.4" />
           </svg>
 
           <h2 class="allCaps spacedText">The messenger<br>of the God</h2>
@@ -785,7 +792,7 @@
         <article data-text='artemis' class="godText lightTheme">
 
           <svg class="godIcon" overflow="visible" viewBox="0 0 300.7 300.7">
-            <path class="iconSVG"  d="M193.9 64.5C146.4 49.7 96 76.1 81.2 123.6s11.6 97.9 59.1 112.7c17.5 5.5 36.2 5.5 53.6 0-47.4-14.8-73.9-65.3-59.1-112.7 8.8-28.2 30.9-50.3 59.1-59.1z" />
+            <path class="iconSVG" d="M193.9 64.5C146.4 49.7 96 76.1 81.2 123.6s11.6 97.9 59.1 112.7c17.5 5.5 36.2 5.5 53.6 0-47.4-14.8-73.9-65.3-59.1-112.7 8.8-28.2 30.9-50.3 59.1-59.1z" />
           </svg>
 
           <h2 class="allCaps spacedText">The Huntress <br>of the Moon</h2>
@@ -808,7 +815,7 @@
         <article data-text='apollo' class="godText lightTheme">
 
           <svg class="godIcon" overflow="visible" viewBox="0 0 300.7 300.7">
-            <circle class="iconSVG"  cx="150.4" cy="150.4" r="90" />
+            <circle class="iconSVG" cx="150.4" cy="150.4" r="90" />
             <circle class="iconSVG" cx="150.4" cy="150.4" r="7.3" />
           </svg>
 
@@ -830,7 +837,7 @@
         <article data-text='demeter' class="godText lightTheme">
 
           <svg class="godIcon" overflow="visible" viewBox="0 0 300.7 300.7">
-            <path class="iconSVG"  d="M96.2 114.4c.1-29.9 24.5-54.1 54.4-54 29.9.1 54.1 24.5 54 54.4-.1 29.9-24.5 54.1-54.4 54m-29.7 39.3h59.1M149.8 163.6v76.7" />
+            <path class="iconSVG" d="M96.2 114.4c.1-29.9 24.5-54.1 54.4-54 29.9.1 54.1 24.5 54 54.4-.1 29.9-24.5 54.1-54.4 54m-29.7 39.3h59.1M149.8 163.6v76.7" />
           </svg>
 
           <h2 class="allCaps spacedText">The Law of Havest</h2>
@@ -898,7 +905,7 @@
         </article>
         <article data-text='zeus' class="godText lightTheme">
           <svg class="godIcon" overflow="visible" viewBox="0 0 300.7 300.7">
-            <path class="iconSVG"  d="M93.7 125.1c-4.9 0-14.8-4.6-14.8-22.9s19.7-36.8 39.4-36.8 39.4 13.8 39.4 45.9-24.6 82.8-73.9 82.8m-4.9 0h142.9M192.2 240V60.7" />
+            <path class="iconSVG" d="M93.7 125.1c-4.9 0-14.8-4.6-14.8-22.9s19.7-36.8 39.4-36.8 39.4 13.8 39.4 45.9-24.6 82.8-73.9 82.8m-4.9 0h142.9M192.2 240V60.7" />
           </svg>
 
           <h2 class="allCaps spacedText">King of Olympus</h2>
@@ -919,11 +926,11 @@
         <article data-text='dionysus' class="godText lightTheme">
 
           <svg class="godIcon" overflow="visible" viewBox="0 0 300.7 300.7">
-            <line class="iconSVG"  x1="169.5" x2="129.4" y1="234.9" y2="234.9" />
-            <line class="iconSVG"  x1="151.1" x2="151.1" y1="234.9" y2="176.7" />
-            <path class="iconSVG"  d="M88.1 114.8s6.2 59.6 62.3 60.7c59.5 1.2 62.2-60.7 62.2-60.7" />
-            <circle class="iconSVG"  cx="151.1" cy="122.5" r="21.4" />
-            <circle class="iconSVG"  cx="129.7" cy="85.5" r="21.4" />
+            <line class="iconSVG" x1="169.5" x2="129.4" y1="234.9" y2="234.9" />
+            <line class="iconSVG" x1="151.1" x2="151.1" y1="234.9" y2="176.7" />
+            <path class="iconSVG" d="M88.1 114.8s6.2 59.6 62.3 60.7c59.5 1.2 62.2-60.7 62.2-60.7" />
+            <circle class="iconSVG" cx="151.1" cy="122.5" r="21.4" />
+            <circle class="iconSVG" cx="129.7" cy="85.5" r="21.4" />
             <circle class="iconSVG" cx="172.5" cy="85.5" r="21.4" />
           </svg>
 
@@ -999,12 +1006,6 @@
   </section>
 
   <audio id="speaker"></audio>
-
-
-
-
-
-
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js" integrity="sha512-1dalHDkG9EtcOmCnoCjiwQ/HEB5SDNqw8d4G2MKoNwjiwMNeBAkudsBCmSlMnXdsH8Bm0mOd3tl/6nL5y0bMaQ==" crossorigin="anonymous"></script>
   <script src="js/DrawSVGPlugin.min.js"></script>

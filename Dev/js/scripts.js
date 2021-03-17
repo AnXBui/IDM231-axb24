@@ -2,6 +2,8 @@ const infoButton = document.querySelector('#moreInfoButton');
 const infoConfirm = document.querySelector('#infoConfirm');
 const infoModule = document.querySelector('#moreInfo');
 const overlay = document.querySelector('.overlay');
+const keyboard = document.querySelector('.keyboardControls');
+let infoActive = false;
 
 gsap.registerPlugin(DrawSVGPlugin, SplitText);
 
@@ -9,18 +11,24 @@ gsap.defaults({
   ease: "power2"
 });
 
-const hideInfo = () => {
-  infoModule.classList.add('hide');
-  overlay.classList.add('hide');
+
+const toggleInfo = () => {
+  if (!infoActive) {
+    infoModule.classList.remove('hide');
+    overlay.classList.remove('hide');
+    keyboard.classList.remove('hide');
+    infoActive = true;
+  } else {
+    infoModule.classList.add('hide');
+    overlay.classList.add('hide');
+    keyboard.classList.add('hide');
+    infoActive = false;
+  }
 }
 
-infoButton.addEventListener("click", () => {
-  infoModule.classList.remove('hide');
-  overlay.classList.remove('hide');
-});
-
-infoConfirm.addEventListener("click", hideInfo);
-overlay.addEventListener("click", hideInfo);
+infoButton.addEventListener("click", toggleInfo, false);
+infoConfirm.addEventListener("click", toggleInfo, false);
+overlay.addEventListener("click", toggleInfo, false);
 
 const hasClass = (element, clss) => {
   return element.classList.contains(clss);
@@ -36,48 +44,51 @@ const rmvClass = (element, clss) => {
 
 const zodiacCalc = (whichMonth, whichDayOfMonth) => {
   let astroSign;
-      if ((whichMonth == 12 && whichDayOfMonth >= 22) || (whichMonth == 1 && whichDayOfMonth <= 19)) {
-      astroSign = 9;
-    } else if ((whichMonth == 11 && whichDayOfMonth >= 22) || (whichMonth == 12 && whichDayOfMonth <= 21)) {
-      astroSign = 8;
-    } else if ((whichMonth == 10 && whichDayOfMonth >= 24) || (whichMonth == 11 && whichDayOfMonth <= 21)) {
-      astroSign = 7;
-    } else if ((whichMonth == 9 && whichDayOfMonth >= 23) || (whichMonth == 10 && whichDayOfMonth <= 23)) {
-      astroSign = 6;
-    } else if ((whichMonth == 8 && whichDayOfMonth >= 23) || (whichMonth == 9 && whichDayOfMonth <= 22)) {
-      astroSign = 5;
-    } else if ((whichMonth == 7 && whichDayOfMonth >= 23) || (whichMonth == 8 && whichDayOfMonth <= 22)) {
-      astroSign = 4;
-    } else if ((whichMonth == 6 && whichDayOfMonth >= 22) || (whichMonth == 7 && whichDayOfMonth <= 22)) {
-      astroSign = 3;
-    } else if ((whichMonth == 5 && whichDayOfMonth >= 21) || (whichMonth == 6 && whichDayOfMonth <= 21)) {
-      astroSign = 2;
-    } else if ((whichMonth == 4 && whichDayOfMonth >= 20) || (whichMonth == 5 && whichDayOfMonth <= 20)) {
-      astroSign = 1;
-    } else if ((whichMonth == 3 && whichDayOfMonth >= 21) || (whichMonth == 4 && whichDayOfMonth <= 19)) {
-      astroSign = 0;
-    } else if ((whichMonth == 2 && whichDayOfMonth >= 19) || (whichMonth == 3 && whichDayOfMonth <= 20)) {
-      astroSign = 11;
-    } else if ((whichMonth == 1 && whichDayOfMonth >= 20) || (whichMonth == 2 && whichDayOfMonth <= 18)) {
-      astroSign = 10;
-    }
+  if ((whichMonth == 12 && whichDayOfMonth >= 22) || (whichMonth == 1 && whichDayOfMonth <= 19)) {
+    astroSign = 9;
+  } else if ((whichMonth == 11 && whichDayOfMonth >= 22) || (whichMonth == 12 && whichDayOfMonth <= 21)) {
+    astroSign = 8;
+  } else if ((whichMonth == 10 && whichDayOfMonth >= 24) || (whichMonth == 11 && whichDayOfMonth <= 21)) {
+    astroSign = 7;
+  } else if ((whichMonth == 9 && whichDayOfMonth >= 23) || (whichMonth == 10 && whichDayOfMonth <= 23)) {
+    astroSign = 6;
+  } else if ((whichMonth == 8 && whichDayOfMonth >= 23) || (whichMonth == 9 && whichDayOfMonth <= 22)) {
+    astroSign = 5;
+  } else if ((whichMonth == 7 && whichDayOfMonth >= 23) || (whichMonth == 8 && whichDayOfMonth <= 22)) {
+    astroSign = 4;
+  } else if ((whichMonth == 6 && whichDayOfMonth >= 22) || (whichMonth == 7 && whichDayOfMonth <= 22)) {
+    astroSign = 3;
+  } else if ((whichMonth == 5 && whichDayOfMonth >= 21) || (whichMonth == 6 && whichDayOfMonth <= 21)) {
+    astroSign = 2;
+  } else if ((whichMonth == 4 && whichDayOfMonth >= 20) || (whichMonth == 5 && whichDayOfMonth <= 20)) {
+    astroSign = 1;
+  } else if ((whichMonth == 3 && whichDayOfMonth >= 21) || (whichMonth == 4 && whichDayOfMonth <= 19)) {
+    astroSign = 0;
+  } else if ((whichMonth == 2 && whichDayOfMonth >= 19) || (whichMonth == 3 && whichDayOfMonth <= 20)) {
+    astroSign = 11;
+  } else if ((whichMonth == 1 && whichDayOfMonth >= 20) || (whichMonth == 2 && whichDayOfMonth <= 18)) {
+    astroSign = 10;
+  }
   return astroSign;
 }
 
 let speaker = document.querySelector('#speaker');
-let soundTgl = {state:'on', obj:document.querySelector('#soundButton')};
+let soundTgl = {
+  state: 'on',
+  obj: document.querySelector('#soundButton')
+};
 soundTgl.obj.addEventListener('click', () => {
-  if (soundTgl.state == 'on'){
+  if (soundTgl.state == 'on') {
     speaker.volume = 0;
     soundTgl.state = 'off';
-    if (!hasClass(soundTgl.obj,'muted')){
-      addClass(soundTgl.obj,'muted');
+    if (!hasClass(soundTgl.obj, 'muted')) {
+      addClass(soundTgl.obj, 'muted');
     }
   } else {
     speaker.volume = 1;
     soundTgl.state = 'on';
-    if (hasClass(soundTgl.obj,'muted')){
-      rmvClass(soundTgl.obj,'muted');
+    if (hasClass(soundTgl.obj, 'muted')) {
+      rmvClass(soundTgl.obj, 'muted');
     }
   }
 })
@@ -100,7 +111,7 @@ class GodItem {
       })
     })
 
-    console.log(this.decoArray);
+    // console.log(this.decoArray);
 
 
 
@@ -120,7 +131,7 @@ class GodItem {
     });
     let title2 = this.title.querySelector('h3');
 
-    console.log(title2);
+    // console.log(title2);
 
 
 
@@ -197,14 +208,14 @@ class GodItem {
   }
 
   hide() {
-    console.log('Hiding ' + this.key);
+    // console.log('Hiding ' + this.key);
     rmvClass(this.scene, 'active');
     rmvClass(this.text, 'active');
 
   }
 
   show() {
-    console.log('Showing ' + this.key);
+    // console.log('Showing ' + this.key);
     addClass(this.scene, 'active');
     addClass(this.text, 'active');
     speaker.src = this.sound;
@@ -228,7 +239,7 @@ class GodGallery {
     this.gallery = document.querySelector(godGalleryID);
     this.form = document.querySelector('#mainForm');
     this.input = document.querySelector('#birthday');
-    console.log(this.input);
+    // console.log(this.input);
     this.submit = document.querySelector('#submit');
     this.inputMsg = this.form.querySelector('.inputMessage');
 
@@ -431,29 +442,18 @@ class GodGallery {
     });
 
     this.submit.addEventListener('click', () => {
-      if (this.input.value){
-        let date = new Date (this.input.value);
-        console.log('submitted');
-        console.log(date);
+      if (this.input.value) {
+        let date = new Date(this.input.value);
+        // console.log('submitted');
         let day = date.getUTCDate();
         let month = date.getUTCMonth() + 1;
-        console.log('day is' + day);
-        console.log();
         this.showGod(zodiacCalc(month, day));
         this.open();
-      } else {
-        console.log('Please enter a value');
-        if (!hasClass(this.inputMsg, 'error')){
-          addClass(this.inputMsg, 'error');
-        }
       }
-
-      // console.log(day);
-      // ;
-     }
-    );
+    });
 
     this.hoverInit();
+    this.keyboardStart();
   }
 
   hideForm() {
@@ -470,7 +470,7 @@ class GodGallery {
 
   minimizePortals() {
     if (!(hasClass(this.portalsArray, 'minimize'))) {
-      addClass(this.oracleMsg,'show');
+      addClass(this.oracleMsg, 'show');
       addClass(this.portalsArray, 'minimize');
       let tl = gsap.timeline();
       tl.to(this.portalsArray, 0.25, {
@@ -489,10 +489,10 @@ class GodGallery {
   maximizePortals() {
     if (hasClass(this.portalsArray, 'minimize')) {
       let portalSize = '80vmax';
-      if (window.matchMedia("(min-width: 992px)").matches){
+      if (window.matchMedia("(min-width: 992px)").matches) {
         portalSize = '95vmin';
       }
-      rmvClass(this.oracleMsg,'show');
+      rmvClass(this.oracleMsg, 'show');
       this.showForm();
       rmvClass(this.portalsArray, 'minimize');
       let tl = gsap.timeline();
@@ -506,7 +506,7 @@ class GodGallery {
     }
   }
 
-  hoverInit(){
+  hoverInit() {
 
     document.querySelectorAll("[data-target]").forEach(element => {
       const button = element;
@@ -514,31 +514,44 @@ class GodGallery {
 
       button.addEventListener("mouseenter", () => {
         let tl = gsap.timeline();
-        addClass(this.godName,'active');
-        tl.to(this.godName,0.125,{opacity: 0, yPercent:-10, onComplete: () => {
-          this.godName.innerHTML = name;
-        }});
-        tl.to(this.godName, 0.125,{opacity: 1, yPercent:0});
+        addClass(this.godName, 'active');
+        tl.to(this.godName, 0.125, {
+          opacity: 0,
+          yPercent: -10,
+          onComplete: () => {
+            this.godName.innerHTML = name;
+          }
+        });
+        tl.to(this.godName, 0.125, {
+          opacity: 1,
+          yPercent: 0
+        });
+      }, false);
 
-
-      });
       button.addEventListener("mouseleave", () => {
         let tl = gsap.timeline();
-        rmvClass(this.godName,'active');
-        tl.to(this.godName,0.125,{opacity: 0, yPercent:-10, onComplete: () => {
-          this.godName.innerHTML = null;
-        }});
-        tl.to(this.godName, 0.125,{opacity: 1, yPercent:0});
+        rmvClass(this.godName, 'active');
+        tl.to(this.godName, 0.125, {
+          opacity: 0,
+          yPercent: -10,
+          onComplete: () => {
+            this.godName.innerHTML = null;
+          }
+        });
+        tl.to(this.godName, 0.125, {
+          opacity: 1,
+          yPercent: 0
+        });
 
 
-      });
+      }, false);
     })
   }
 
   pausePortals(dur) {
     // console.log('Pausing portals for ' + dur);
     if (!this.portalResuming) {
-      console.log("Pausing portal")
+      // console.log("Pausing portal")
       gsap.to(this.portalAnim, dur, {
         timeScale: 0.01,
         onComplete: () => {
@@ -611,18 +624,18 @@ class GodGallery {
         this.pausePortals(0);
       }
 
-      if (hasClass(this.inputMsg, 'error')){
+      if (hasClass(this.inputMsg, 'error')) {
         rmvClass(this.inputMsg, 'error');
       }
 
-      if (hasClass(this.oracleMsg, 'show')){
+      if (hasClass(this.oracleMsg, 'show')) {
         rmvClass(this.oracleMsg, 'show');
       }
     }
   }
 
   close() {
-    console.log('close');
+    // console.log('close');
     if (this.opened) {
       this.showForm();
       this.showPortals();
@@ -635,7 +648,7 @@ class GodGallery {
       this.resumePortals(0.15);
       this.opened = false;
       speaker.pause();
-      this.input.value=null;
+      this.input.value = null;
     }
 
 
@@ -666,16 +679,13 @@ class GodGallery {
       // this.godArray[index].animateIn();
       this.activeGod = index;
     } else {
-      console.log('already active: ' + index);
+      // console.log('already active: ' + index);
       speaker.play();
     }
   }
 
   nextGod() {
-    console.log('next');
     let i = this.activeGod;
-    // let f = this.godArray[i].hide();
-    // console.log(f);
     this.godArray[i].hide()
     if (this.activeGod == 11) {
       this.activeGod = 0;
@@ -687,7 +697,6 @@ class GodGallery {
   }
 
   prevGod() {
-    console.log('previous');
     let i = this.activeGod;
     this.godArray[i].hide()
     if (this.activeGod == 0) {
@@ -698,7 +707,68 @@ class GodGallery {
     this.godArray[this.activeGod].show();
     this.godArray[this.activeGod].animateIn();
   }
+
+  keyboardStart() {
+    this.keyboardEvent = this.keyboardEvent.bind(this);
+    document.addEventListener('keydown', this.keyboardEvent, false);
+  }
+
+  keyboardEvent(e) {
+    switch (e.keyCode) {
+      case 39:
+        if (this.opened) {
+          this.nextGod();
+        }
+        break;
+      case 37:
+        if (this.opened) {
+          this.prevGod();
+        }
+        break;
+      case 27:
+        if (this.oracle) {
+          this.maximizePortals();
+          this.oracle = false;
+        }
+        if (infoActive) {
+          toggleInfo();
+        }
+        this.close();
+        break;
+      case 69:
+        if (this.oracle && this.portalResuming) {
+          this.maximizePortals();
+          this.oracle = false;
+        }
+        if (infoActive) {
+          toggleInfo();
+        }
+        this.open();
+        break;
+      case 73:
+        toggleInfo();
+        break;
+      case 79:
+        if (this.opened) {
+          this.close();
+        }
+        if (!this.oracle && !this.portalResuming) {
+          this.minimizePortals();
+          this.pausePortals(0.5);
+          this.oracle = true;
+
+        } else {
+          this.maximizePortals();
+          this.resumePortals(0.5);
+          this.oracle = false;
+        }
+        break;
+      default:
+        // code block
+    }
+  }
 }
+
 
 
 //
@@ -709,20 +779,57 @@ const ui = document.querySelectorAll('.mainUi');
 const form = document.querySelector('.form');
 
 
-gsap.set(body,{alpha: 0})
-gsap.set(body,{visibility:'hidden'});
+gsap.set(body, {
+  alpha: 0
+})
+gsap.set(body, {
+  visibility: 'hidden'
+});
 // gsap.set(portals,{scale: 0.5, alpha: 0});
 
 
 window.onload = () => {
 
-  gsap.set(body,{visibility:'visible'});
-  let tl = gsap.timeline();
-  tl.fromTo(body,1,{alpha: 0},{alpha: 1},'start')
-  tl.fromTo(portals,1.5,{scale: 0.5, alpha: 0},{scale: 1, alpha: 1},'start')
-  tl.fromTo(mountain,1.2,{yPercent: 30, scaleY: 0.85, alpha: 0},{yPercent: 0,  scaleY: 1, alpha: 1},'start')
-  tl.fromTo(form,1.75,{yPercent:-15, alpha: 0},{yPercent:0, alpha: 1},'start')
-  tl.fromTo(ui,1.5,{ xPercent: 30, alpha: 0},{xPercent: 0, alpha: 1,stagger:0.5},'start')
-  let masterGallery = new GodGallery('#godGallery');
+  gsap.set(body, {
+    visibility: 'visible'
+  });
+  const tl = gsap.timeline();
+  tl.fromTo(body, 1, {
+    alpha: 0
+  }, {
+    alpha: 1
+  }, 'start')
+  tl.fromTo(portals, 1.5, {
+    scale: 0.5,
+    alpha: 0
+  }, {
+    scale: 1,
+    alpha: 1
+  }, 'start')
+  tl.fromTo(mountain, 1.2, {
+    yPercent: 30,
+    scaleY: 0.85,
+    alpha: 0
+  }, {
+    yPercent: 0,
+    scaleY: 1,
+    alpha: 1
+  }, 'start')
+  tl.fromTo(form, 1.75, {
+    yPercent: -15,
+    alpha: 0
+  }, {
+    yPercent: 0,
+    alpha: 1
+  }, 'start')
+  tl.fromTo(ui, 1.5, {
+    xPercent: 30,
+    alpha: 0
+  }, {
+    xPercent: 0,
+    alpha: 1,
+    stagger: 0.5
+  }, 'start')
+  const masterGallery = new GodGallery('#godGallery');
   masterGallery.init();
 };

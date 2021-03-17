@@ -1,13 +1,26 @@
 /* =============
     Home
 ============= */
-html { overflow: hidden;}
-body { overflow: scroll;}
+html {
+  overflow: hidden;
+}
 
 body {
-  // background-color: $dark;
+  overflow: scroll;
+}
+
+body {
   background-color: #13142e;
   overscroll-behavior: none;
+}
+
+img, picture, button, input{
+  &::selection {
+  background: none; /* WebKit/Blink Browsers */
+  }
+  &::-moz-selection {
+  background: none; /* Gecko Browsers */
+  }
 }
 
 .foilBg {
@@ -24,7 +37,7 @@ body {
   background-repeat: no-repeat;
   color: transparent !important;
 
-  >div{
+  > div {
     background-image: url("../img/gold.jpg");
     filter: brightness(1.1);
     background-clip: text;
@@ -43,8 +56,15 @@ body {
 .buttonSolid {
   background-color: $dark;
   color: $light;
+  border: $dark 2px solid;
   padding: 0.5em 2em;
   margin-top: 1em;
+  transition: background-color 0.25s, color 0.25s;
+
+  &:hover, &:active{
+    background-color: $light;
+    color: $dark;
+  }
 }
 
 .outlineCircleButton {
@@ -72,17 +92,17 @@ body {
   }
 
   &:active,
-  &:hover,
-  &:focus {
+  &:focus,
+  &:hover {
     color: $dark;
     --beforeScale: 1;
   }
 }
 
-button{
+button {
   transform: scale(1) translateZ(0);
 
-  &:focus{
+  &:focus {
     outline: 0;
     // transform: scale(1.1) translateZ(0);
   }
@@ -103,7 +123,7 @@ button{
   transition: 0.5s transform;
   --opacity: 1;
 
-  > div {
+  .infoMain {
     max-width: 38rem;
     max-height: 90vh;
     overflow-y: auto;
@@ -116,10 +136,50 @@ button{
       transition: opacity 0.25s;
       transition-delay: 0.1s;
     }
+
     @include md {
       padding: 4rem;
     }
   }
+
+
+}
+
+.keyboardControls{
+  position: fixed;
+  z-index: 20;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3rem;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: all;
+  padding: 0 2rem;
+  display: none;
+  transform: translateY(0);
+  transition: transform 0.25s, opacity 0.25s;
+  opacity: 1;
+
+  @include lg{
+    display: flex;
+  }
+
+  p{
+    margin-top: 0;
+    color: rgba($light, 0.5);
+
+    b{
+      font-weight: bolder;
+      color: rgba($light, 1);
+    }
+  }
+}
+
+.keyboardControls.hide{
+  transform: translateY(100%);
+  pointer-events: none;
+  opacity: 0;
 }
 
 .moreInfoButton {
@@ -136,8 +196,7 @@ button{
   align-items: center;
   z-index: 30;
   opacity: 0.75;
-
-  @include lg{
+  @include lg {
     top: 3.5rem;
     right: 3.5rem;
     width: 3.25rem;
@@ -167,8 +226,8 @@ button{
   }
 
   &:active,
-  &:hover,
-  &:focus {
+  &:focus,
+  &:hover {
     > svg {
       fill: $dark;
     }
@@ -177,7 +236,7 @@ button{
   }
 }
 
-.seeAllButton{
+.seeAllButton {
   width: 2.75rem;
   height: 2.75rem;
   border: 1px solid $light;
@@ -192,8 +251,7 @@ button{
   z-index: 30;
   opacity: 0.75;
   // opacity: 0.75;
-
-  @include lg{
+  @include lg {
     top: 8rem;
     right: 3.5rem;
     width: 3.25rem;
@@ -223,9 +281,10 @@ button{
   }
 
   &:active,
-  &:hover,
-  &:focus {
+  &:focus,
+  &:hover {
     opacity: 1;
+
     > svg {
       fill: $dark;
     }
@@ -234,7 +293,7 @@ button{
   }
 }
 
-#soundButton{
+#soundButton {
   position: fixed;
   width: 2.75rem;
   height: 2.75rem;
@@ -249,30 +308,29 @@ button{
   z-index: 20;
   opacity: 0.75;
   background-color: $dark;
-
-  @include lg{
+  @include lg {
     top: auto;
     right: 3.5rem;
     bottom: 3.5rem;
     width: 3.25rem;
     height: 3.25rem;
   }
-  >svg{
+
+  > svg {
     width: 100%;
     height: 100%;
     fill: currentColor;
   }
 
-  .muted{
+  .muted {
     opacity: var(--muted);
     transition: opacity 0.25s;
   }
 
-  .sounded{
+  .sounded {
     opacity: var(--sounded);
     transition: opacity 0.25s;
   }
-
 
   &::before {
     content: '';
@@ -289,15 +347,17 @@ button{
     transition: transform 0.25s;
   }
 
-  &:hover, &:active{
-    --beforeScale:1;
+  &:active,
+  &:hover {
+    --beforeScale: 1;
+
     > svg {
       fill: $dark;
     }
   }
 }
 
-#soundButton.muted{
+#soundButton.muted {
   --muted: 1;
   --sounded: 0;
 }
@@ -305,7 +365,6 @@ button{
 .moreInfo.hide {
   transform: translateY(-200vh) rotateZ(0deg);
   --opacity: 0;
-  // visibility: hidden;
   pointer-events: none;
 }
 
@@ -323,7 +382,6 @@ button{
 
 .overlay.hide {
   opacity: 0;
-  // visibility: hidden;
   pointer-events: none;
 }
 
@@ -354,7 +412,7 @@ button{
     }
   }
 
-  .inputMessage{
+  .inputMessage {
     opacity: 0;
     max-height: 1px;
     overflow: hidden;
@@ -362,13 +420,13 @@ button{
     color: pink;
   }
 
-  .inputMessage.error{
+  .inputMessage.error {
     opacity: 1;
     max-height: 10rem;
   }
 }
 
-.mainForm.inactive{
+.mainForm.inactive {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -392,7 +450,7 @@ button{
     z-index: 1;
     filter: brightness(0.85);
     transition: width 1s, left 0.5s;
-    mask-image: linear-gradient(to bottom,  rgba(black, 1) 30%, rgba(black, 0) 90%);
+    mask-image: linear-gradient(to bottom, rgba(black, 1) 30%, rgba(black, 0) 90%);
     animation: sky 5s;
     animation-iteration-count: infinite;
     animation-timing-function: ease-in-out;
@@ -407,7 +465,7 @@ button{
     min-height: 30vh;
     width: 100%;
     transition: width 1s, left 0.5s, bottom 0.5s;
-    mask-image: linear-gradient(to right,  rgba(black, 0) 0%, black 20%, black 70%, rgba(black, 0) 100%);
+    mask-image: linear-gradient(to right, rgba(black, 0) 0%, black 20%, black 70%, rgba(black, 0) 100%);
 
     > img {
       height: 100%;
@@ -425,21 +483,19 @@ button{
   }
 }
 
-.backgroundImageWrapper.minimize{
-
-  @include lg{
-    .backgroundMountain{
+.backgroundImageWrapper.minimize {
+  @include lg {
+    .backgroundMountain {
       width: 130%;
       left: -35%;
       bottom: -15%;
     }
 
-    .backgroundSky{
+    .backgroundSky {
       width: 130%;
       left: -20%;
     }
   }
-
 }
 
 .godPortals {
@@ -455,7 +511,7 @@ button{
   pointer-events: none;
 }
 
-.godPortals.inactive{
+.godPortals.inactive {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -545,14 +601,11 @@ button{
   }
 }
 
-.godButtonList.minimize{
+.godButtonList.minimize {
   --buttonSize: 15vmin;
-
-  @include md{
+  @include md {
     --buttonSize: 10vmin;
   }
-
-  // --buttonListSize: 85vmin;
 }
 
 .godButton {
@@ -566,7 +619,6 @@ button{
   align-items: center;
   background: transparent;
   transition: transform 0.25s, background 0.25s, width 0.25s, height 0.25s;
-  // transform: scale(1) translateZ(0);
   transition-delay: 0.05s;
 
   > svg {
@@ -579,8 +631,8 @@ button{
   }
 
   &:active,
-  &:hover,
-  &:focus {
+  &:focus,
+  &:hover {
     background: rgba($light,0.75);
     transform: scale(1.2) translateZ(0);
 
@@ -590,7 +642,7 @@ button{
   }
 }
 
-.oracleMode{
+.oracleMode {
   width: 100vw;
   height: 100vh;
   position: fixed;
@@ -604,97 +656,87 @@ button{
   transition: opacity 0.25s;
   pointer-events: none;
 
-  >div{
-     width: 40vmin;
-     height: 40vmin;
-     border-radius: 100%;
-     // border: 1px solid $light;
-     text-align: center;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     flex-direction: column;
-
-     @include lg{
-       width: 50vmin;
-       height: 50vmin;
-     }
+  > div {
+    width: 40vmin;
+    height: 40vmin;
+    border-radius: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    @include lg {
+      width: 50vmin;
+      height: 50vmin;
+    }
   }
 
-  h3{
+  h3 {
     font-family: 'Space Grotesk', sans-serif;
     letter-spacing: 0.15em;
     font-weight: 400;
-
-
-    @include lg{
+    @include lg {
       margin-bottom: 0.25em;
     }
   }
 
-
-  .h1{
+  .h1 {
     text-transform: uppercase;
     letter-spacing: 0.25em;
     margin-bottom: 0;
     height: 0;
     max-width: fit-content;
     margin: 0 auto;
-    display: flex;
     align-items: center;
     justify-content: center;
     transition: max-width 0.5s;
-    display: none;
 
-    &::before{
-      content:'';
+    &::before {
+      content: '';
       display: inline-block;
       width: 0.75em;
       height: 0.75em;
-      background-image: url('../img/leftEye.svg');
+      background-image: url("../img/leftEye.svg");
       background-repeat: no-repeat;
       transition: 0.25s;
       background-size: contain;
       background-position: right center;
     }
 
-    &::after{
-      content:'';
+    &::after {
+      content: '';
       display: inline-block;
-      width: 0.75em;
+      width: 0.8em;
       height: 0.75em;
-      background-image: url('../img/rightEye.svg');
+      background-image: url("../img/rightEye.svg");
       background-repeat: no-repeat;
       transition: 0.25s;
       background-size: contain;
       background-position: left center;
-
     }
-
-    @include lg{
+    @include lg {
       display: flex;
       height: 2em;
     }
   }
-
-
 }
 
-.oracleMode.show{
+.oracleMode.show {
   opacity: 1;
 
-  >div{
+  > div {
     pointer-events: all;
   }
 
-  .h1.active{
-    max-width: 100%;
+  .h1.active {
+    max-width: 100vw;
+    display: inline-block;
 
-    &::before{
+    &::before {
       margin-right: 0.5em;
     }
 
-    &::after{
+    &::after {
       margin-left: 0.5em;
     }
   }
@@ -709,7 +751,6 @@ button{
   height: 100vh;
   overflow-y: auto;
   grid-template-rows: 100vh 100vh;
-
   @include lg {
     height: 100vh;
     grid-template-rows: 1fr;
@@ -721,7 +762,6 @@ button{
   background: $gradientLight;
   padding: 1rem;
   position: relative;
-
   @include md {
     padding: 2rem;
   }
@@ -754,14 +794,14 @@ button{
     }
   }
 
-  &::after{
-    content:'';
+  &::after {
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('../img/landscape.jpg');
+    background-image: url("../img/landscape.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     mask-image: linear-gradient(to top, rgba(black,100%) 0%, rgba(black, 0) 60%);
@@ -770,7 +810,7 @@ button{
   }
 }
 
-.godTextWrapper{
+.godTextWrapper {
   position: relative;
   width: 100%;
   height: 100%;
@@ -800,17 +840,14 @@ button{
   @include md {
     padding: 2rem 2rem 0;
   }
-
-  @include lg{
+  @include lg {
     overflow-y: auto;
     overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch;
-
     @media (min-height: 950px) {
       overflow-y: hidden;
       justify-content: center;
       padding: 2rem 2rem 4rem;
-
     }
   }
 
@@ -872,13 +909,11 @@ button{
       left: 0;
       z-index: -1;
       display: none;
-
-      @include lg{
+      @include lg {
         display: block;
       }
     }
-
-    @include md{
+    @include md {
       position: absolute;
     }
     @include lg {
@@ -886,7 +921,7 @@ button{
       bottom: 0;
       padding: 2rem 0;
       position: sticky;
-      @media (min-height: 950px){
+      @media (min-height: 950px) {
         position: absolute;
       }
     }
@@ -897,13 +932,13 @@ button{
   }
 }
 
-.godText.active{
+.godText.active {
   opacity: 1;
   visibility: visible;
   pointer-events: all;
 }
 
-.godSceneWrapper{
+.godSceneWrapper {
   position: relative;
   width: 100%;
   height: 100%;
@@ -930,19 +965,17 @@ button{
     width: 100%;
     z-index: 3;
 
-    .deco{
+    .deco {
       position: absolute;
       fill: none;
       stroke: $light;
       stroke-width: 1;
       opacity: 0.75;
-      // filter: brightness(1);
       transition: stroke-width 0.25s;
       pointer-events: none;
-
     }
 
-    .godFigure{
+    .godFigure {
       z-index: 5;
       position: absolute;
       top: 0;
@@ -963,54 +996,43 @@ button{
         animation-timing-function: ease-in-out;
         animation-direction: alternate;
       }
-
     }
 
-
-
-    .halo{
+    .halo {
       position: absolute;
       z-index: 4;
       width: 34%;
-
-
-      >path{
-        // animation: shimmer2 1.5s;
-        // animation-iteration-count: infinite;
-        // animation-timing-function: ease-in-out;
-        // animation-direction: alternate;
-        // fill: url('../img/gold.jpg');
-      }
     }
   }
 
-  .godTitle{
+  .godTitle {
     text-align: center;
     position: absolute;
-    bottom: 0rem;
+    bottom: 0;
     padding: 30% 0 3rem;
     width: 100%;
     z-index: 4;
 
-    &::before{
-      content:'';
+    &::before {
+      content: '';
       width: 100%;
       height: 100%;
       background: linear-gradient(to top, $dark 25%, rgba($dark, 0) 100%);
       filter: brightness(0.65);
       top: 0;
-      left:0;
+      left: 0;
       position: absolute;
       z-index: -1;
     }
 
-    h3{
+    h3 {
       opacity: 0.8;
     }
 
-    h2{
+    h2 {
       overflow-y: hidden;
-      >div{
+
+      > div {
         animation: shimmer 3s;
         animation-iteration-count: infinite;
         animation-timing-function: ease-in-out;
@@ -1021,21 +1043,21 @@ button{
   }
 }
 
-.godScene.active{
+.godScene.active {
   opacity: 1;
   visibility: visible;
   pointer-events: all;
 }
 
-.upperLayer{
+.upperLayer {
   z-index: 6;
 }
 
-.lowerLayer{
+.lowerLayer {
   z-index: 3;
 }
 
-.godUi{
+.godUi {
   // position: fixed;
   position: absolute;
   top: 50%;
@@ -1046,15 +1068,15 @@ button{
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 100%;
   --buttonPosition: 1rem;
-
-  @include md{
+  @include md {
     width: 3.5rem;
     height: 3.5rem;
     --buttonPosition: 2rem;
   }
 
-  >svg{
+  > svg {
     width: 100%;
     height: 100%;
     fill: none;
@@ -1062,45 +1084,57 @@ button{
     stroke-width: 1;
     transform: scale(1) translateZ(0);
     transition: transform 0.25s;
-
   }
 
-  &:hover, &:active, &:focus{
-    >svg{
+  &:active,
+  &:focus,
+  &:hover {
+    > svg {
       transform: scale(1.2) translateZ(0);
+    }
+  }
+
+  &:focus{
+    &:before{
+      content:'';
+      width: 130%;
+      height: 130%;
+      position: absolute;
+      top: -15%;
+      left: -15%;
+      border-radius: 100%;
+      border: 1px solid $light;
     }
   }
 }
 
-.nextGod{
+.nextGod {
   right: var(--buttonPosition);
 }
 
-.prevGod{
+.prevGod {
   left: var(--buttonPosition);
 }
 
-.closeGod{
+.closeGod {
   top: var(--buttonPosition);
   left: var(--buttonPosition);
 }
 
-.godMainWrapper.zeus{
+.godMainWrapper.zeus {
   width: 75vmin;
   margin-left: -8vmin;
   padding-bottom: 160vmin;
-
-  @include md{
+  @include md {
     width: 56vmin;
     padding-bottom: 115vmin;
   }
-
-  @include lg{
+  @include lg {
     width: 40vmin;
     padding-bottom: 85vmin;
   }
 
-  .godFigure{
+  .godFigure {
     position: absolute;
     top: 0;
     left: 0;
@@ -1108,22 +1142,22 @@ button{
     height: 100%;
   }
 
-  .halo{
+  .halo {
     width: 34%;
     top: 13%;
     left: 38%;
   }
 
-  .decoA{
-      width: 12%;
-      top: 20%;
-      left: 20%;
-      animation-delay: 1s;
-      animation: updown 2s ease-in-out infinite;
-      animation-direction: alternate;
+  .decoA {
+    width: 12%;
+    top: 20%;
+    left: 20%;
+    animation-delay: 1s;
+    animation: updown 2s ease-in-out infinite;
+    animation-direction: alternate;
   }
 
-  .decoB{
+  .decoB {
     width: 15%;
     bottom: 20%;
     right: 3%;
@@ -1132,41 +1166,38 @@ button{
   }
 }
 
-.godMainWrapper.athena{
+.godMainWrapper.athena {
   width: 65vmin;
   padding-bottom: 150vmin;
-
-  @include md{
+  @include md {
     width: 48vmin;
     padding-bottom: 105vmin;
   }
-
-  @include lg{
+  @include lg {
     width: 35vmin;
     padding-bottom: 78vmin;
   }
 
-  .halo{
+  .halo {
     width: 50%;
-    top: 0%;
+    top: 0;
     left: 22%;
-
-    @include lg{
+    @include lg {
       width: 45%;
       left: 25%;
-      top: 0%;
+      top: 0;
     }
   }
 
-  .decoA{
-      width: 25%;
-      bottom: 25%;
-      left: 0;
-      animation: updown 4s linear infinite;
-      animation-direction: alternate;
+  .decoA {
+    width: 25%;
+    bottom: 25%;
+    left: 0;
+    animation: updown 4s linear infinite;
+    animation-direction: alternate;
   }
 
-  .decoB{
+  .decoB {
     width: 25%;
     top: 20%;
     right: 5%;
@@ -1176,12 +1207,12 @@ button{
   }
 }
 
-.cloud{
+.cloud {
   position: absolute;
   pointer-events: none;
 }
 
-.cloudA{
+.cloudA {
   z-index: 8;
   top: 35%;
   left: 10%;
@@ -1189,17 +1220,13 @@ button{
   animation: sweepA 10s infinite linear;
   animation-direction: alternate;
   animation-timing-function: ease-in-out;
-
-
-  @include lg{
+  @include lg {
     top: 25%;
     width: 20rem;
   }
 }
 
-
-
-.cloudB{
+.cloudB {
   z-index: 10;
   top: 45%;
   right: 15%;
@@ -1207,10 +1234,9 @@ button{
   animation: sweepB 15s infinite linear;
   animation-direction: alternate;
   animation-timing-function: ease-in-out;
-
 }
 
-.cloudC{
+.cloudC {
   z-index: 3;
   bottom: 20%;
   left: 20%;
@@ -1219,80 +1245,74 @@ button{
   animation: sweepC 10s infinite linear;
   animation-direction: alternate;
   animation-timing-function: ease-in-out;
-
 }
-
-@keyframes sweepA{
-  from{
+@keyframes sweepA {
+  from {
     transform: translate3d(15%,0,0);
   }
-  to{
+
+  to {
     transform: translate3d(-15%,0,0);
   }
 }
-
-@keyframes sweepB{
-  from{
+@keyframes sweepB {
+  from {
     transform: translate3d(-20%,0,0);
   }
-  to{
+
+  to {
     transform: translate3d(20%,0,0);
   }
 }
-
-@keyframes sweepC{
-  from{
+@keyframes sweepC {
+  from {
     transform: translate3d(18%,0,0);
   }
-  to{
+
+  to {
     transform: translate3d(-18%,0,0);
   }
 }
 
-.godMainWrapper.aphrodite{
+.godMainWrapper.aphrodite {
   width: 85vmin;
   padding-bottom: 150vmin;
   margin-bottom: -5vmin;
-
-
-  @include md{
+  @include md {
     width: 55vmin;
     margin-bottom: -7vmin;
     padding-bottom: 110vmin;
   }
-
-  @include lg{
+  @include lg {
     width: 45vmin;
     margin-bottom: -5vmin;
     padding-bottom: 82vmin;
   }
 
-  .halo{
+  .halo {
     width: 30%;
     top: 6%;
     left: 22%;
-
-    @include md{
+    @include md {
       top: 3%;
     }
-
-    @include lg{
+    @include lg {
       width: 28%;
       left: 24%;
       top: 1%;
     }
   }
 
-  .decoA{
-      width: 85%;
-      top: 18%;
-      left: 7%;
-      animation-delay: 1s;
-      animation: updown 6s ease-in-out infinite;
-      animation-direction: alternate;
+  .decoA {
+    width: 85%;
+    top: 18%;
+    left: 7%;
+    animation-delay: 1s;
+    animation: updown 6s ease-in-out infinite;
+    animation-direction: alternate;
   }
 
-  .decoB{
+  .decoB {
     width: 75%;
     bottom: 20%;
     right: 10%;
@@ -1301,38 +1321,36 @@ button{
   }
 }
 
-.godMainWrapper.hermes{
+.godMainWrapper.hermes {
   width: 56vmin;
   padding-bottom: 138vmin;
-
-  @include md{
+  @include md {
     width: 55vmin;
     margin-bottom: -7vmin;
     padding-bottom: 110vmin;
   }
-
-  @include lg{
+  @include lg {
     width: 43vmin;
     margin-bottom: -5vmin;
     padding-bottom: 78vmin;
   }
 
-  .halo{
+  .halo {
     width: 50%;
     top: -6.5%;
     left: 22%;
   }
 
-  .decoA{
-      width: 55%;
-      top: 18%;
-      left: 5%;
-      animation-delay: 1s;
-      animation: sideway 5s linear infinite;
-      animation-direction: alternate;
+  .decoA {
+    width: 55%;
+    top: 18%;
+    left: 5%;
+    animation-delay: 1s;
+    animation: sideway 5s linear infinite;
+    animation-direction: alternate;
   }
 
-  .decoB{
+  .decoB {
     width: 75%;
     bottom: 25%;
     right: 10%;
@@ -1341,54 +1359,49 @@ button{
     animation-direction: alternate;
   }
 
-  .decoC{
+  .decoC {
     width: 75%;
     top: 27%;
-    right: 0%;
+    right: 0;
     animation-delay: 0.5s;
     animation: sideway 6s linear infinite;
     animation-direction: alternate;
   }
-
-
 }
 
-.godMainWrapper.artemis{
+.godMainWrapper.artemis {
   width: 75vmin;
   padding-bottom: 140vmin;
   margin-right: -3vmin;
-
-  @include md{
+  @include md {
     width: 57vmin;
     margin-bottom: -3vmin;
     padding-bottom: 112vmin;
   }
-
-  @include lg{
+  @include lg {
     width: 43vmin;
     margin-bottom: -3vmin;
     padding-bottom: 78vmin;
   }
 
-  .halo{
+  .halo {
     width: 30%;
-    top: 0%;
+    top: 0;
     left: 45%;
-
-    @include lg{
+    @include lg {
       top: -3%;
     }
   }
 
-  .decoA{
-      width: 8%;
-      top: 5%;
-      right: 30%;
-      animation: updown 3s linear infinite;
-      animation-direction: alternate;
+  .decoA {
+    width: 8%;
+    top: 5%;
+    right: 30%;
+    animation: updown 3s linear infinite;
+    animation-direction: alternate;
   }
 
-  .decoB{
+  .decoB {
     width: 7%;
     bottom: 30%;
     right: 30%;
@@ -1397,7 +1410,7 @@ button{
     animation-direction: alternate;
   }
 
-  .decoC{
+  .decoC {
     width: 7%;
     top: 30%;
     left: 3%;
@@ -1405,76 +1418,69 @@ button{
     animation: updown 3s linear infinite;
     animation-direction: alternate;
   }
-
-
 }
 
-.godMainWrapper.apollo{
+.godMainWrapper.apollo {
   width: 78vmin;
   padding-bottom: 145vmin;
   margin-right: -3vmin;
   margin-bottom: -3vmin;
-
-  @include md{
+  @include md {
     width: 55vmin;
     margin-bottom: -5vmin;
     padding-bottom: 110vmin;
   }
-
-  @include lg{
+  @include lg {
     width: 43vmin;
     margin-bottom: -3vmin;
     padding-bottom: 78vmin;
   }
 
-  .halo{
+  .halo {
     width: 50%;
     top: -4%;
     left: 6.5%;
-
-    @include lg{
+    @include lg {
       top: -3%;
     }
   }
 
-  .decoA{
-      width: 120%;
-      top: -10%;
-      left: -10%;
+  .decoA {
+    width: 120%;
+    top: -10%;
+    left: -10%;
   }
 }
 
-.godMainWrapper.demeter{
+.godMainWrapper.demeter {
   width: 56vmin;
   padding-bottom: 138vmin;
-
-  @include md{
+  @include md {
     width: 45vmin;
     margin-bottom: -3vmin;
     padding-bottom: 102vmin;
   }
-
-  @include lg{
+  @include lg {
     width: 43vmin;
     margin-bottom: 0vmin;
     padding-bottom: 74vmin;
   }
 
-  .halo{
+  .halo {
     width: 40%;
     top: -3%;
     left: 25%;
   }
 
-  .decoA{
-      width: 30%;
-      top: 5%;
-      left: 5%;
-      animation: updown 7s ease-in-out infinite;
-      animation-direction: alternate;
+  .decoA {
+    width: 30%;
+    top: 5%;
+    left: 5%;
+    animation: updown 7s ease-in-out infinite;
+    animation-direction: alternate;
   }
 
-  .decoB{
+  .decoB {
     width: 55%;
     bottom: 10%;
     right: 5%;
@@ -1482,42 +1488,38 @@ button{
     animation: updown 6s ease-in-out infinite;
     animation-direction: alternate;
   }
-
 }
 
-.godMainWrapper.haphaestus{
+.godMainWrapper.haphaestus {
   width: 72vmin;
   padding-bottom: 130vmin;
   margin-left: -5vmin;
-
-
-  @include md{
+  @include md {
     width: 55vmin;
     margin-bottom: -5vmin;
     padding-bottom: 102vmin;
   }
-
-  @include lg{
+  @include lg {
     width: 40vmin;
     margin-bottom: -1vmin;
     padding-bottom: 70vmin;
   }
 
-  .halo{
+  .halo {
     width: 13%;
     top: -10%;
     right: 25%;
   }
 
-  .decoA{
-      width: 14px;
-      top: -5%;
-      left: 30%;
-      animation: updown 2s ease-in-out infinite;
-      animation-direction: alternate;
+  .decoA {
+    width: 14px;
+    top: -5%;
+    left: 30%;
+    animation: updown 2s ease-in-out infinite;
+    animation-direction: alternate;
   }
 
-  .decoB{
+  .decoB {
     width: 14px;
     bottom: 40%;
     right: 15%;
@@ -1525,7 +1527,7 @@ button{
     animation-direction: alternate;
   }
 
-  .decoC{
+  .decoC {
     width: 1px;
     bottom: 40%;
     left: 15%;
@@ -1533,41 +1535,38 @@ button{
     animation: updown 2s ease-in-out infinite;
     animation-direction: alternate;
   }
-
 }
 
-.godMainWrapper.ares{
+.godMainWrapper.ares {
   width: 78vmin;
   padding-bottom: 160vmin;
-
-  @include md{
+  @include md {
     width: 55vmin;
     margin-bottom: 0vmin;
     padding-bottom: 110vmin;
   }
-
-  @include lg{
+  @include lg {
     width: 45vmin;
     margin-bottom: -2vmin;
     padding-bottom: 85vmin;
   }
 
-  .halo{
+  .halo {
     width: 50%;
     top: 25%;
     left: 22%;
   }
 
-  .decoA{
-      width: 60%;
-      top: 16%;
-      left: 10%;
-      animation-delay: 1s;
-      animation: updown 2s ease-in-out infinite;
-      animation-direction: alternate;
+  .decoA {
+    width: 60%;
+    top: 16%;
+    left: 10%;
+    animation-delay: 1s;
+    animation: updown 2s ease-in-out infinite;
+    animation-direction: alternate;
   }
 
-  .decoB{
+  .decoB {
     width: 65%;
     bottom: 25%;
     right: 10%;
@@ -1576,39 +1575,37 @@ button{
   }
 }
 
-.godMainWrapper.dionysus{
+.godMainWrapper.dionysus {
   width: 75vmin;
   padding-bottom: 140vmin;
   margin-right: -3vmin;
-
-  @include md{
+  @include md {
     width: 57vmin;
     margin-bottom: -3vmin;
     padding-bottom: 103vmin;
   }
-
-  @include lg{
+  @include lg {
     width: 43vmin;
     margin-bottom: -3vmin;
     padding-bottom: 78vmin;
   }
 
-  .halo{
+  .halo {
     width: 45%;
     top: -5%;
     left: 25%;
   }
 
-  .decoA{
-      width: 8%;
-      top: 25%;
-      left: 23%;
-      animation-delay: 1s;
-      animation: updown 1s ease-in-out infinite;
-      animation-direction: alternate;
+  .decoA {
+    width: 8%;
+    top: 25%;
+    left: 23%;
+    animation-delay: 1s;
+    animation: updown 1s ease-in-out infinite;
+    animation-direction: alternate;
   }
 
-  .decoB{
+  .decoB {
     width: 28%;
     bottom: 50%;
     right: 10%;
@@ -1617,7 +1614,7 @@ button{
     animation-direction: alternate;
   }
 
-  .decoC{
+  .decoC {
     width: 15%;
     bottom: 30%;
     left: 20%;
@@ -1626,7 +1623,7 @@ button{
     animation-direction: alternate;
   }
 
-  .decoD{
+  .decoD {
     width: 15%;
     bottom: 20%;
     right: 30%;
@@ -1635,40 +1632,37 @@ button{
   }
 }
 
-.godMainWrapper.hera{
+.godMainWrapper.hera {
   width: 75vmin;
   padding-bottom: 140vmin;
   margin-left: -7vmin;
-
-  @include md{
+  @include md {
     width: 57vmin;
     margin-bottom: -3vmin;
     padding-bottom: 103vmin;
   }
-
-  @include lg{
+  @include lg {
     width: 43vmin;
     padding-bottom: 75vmin;
     margin-bottom: 0vmin;
-
   }
 
-  .halo{
+  .halo {
     width: 38%;
-    top: 0%;
+    top: 0;
     left: 35%;
   }
 
-  .decoA{
-      width: 20%;
-      top: 25%;
-      right: 0;
-      animation-delay: 1s;
-      animation: updown 4s ease-in-out infinite;
-      animation-direction: alternate;
+  .decoA {
+    width: 20%;
+    top: 25%;
+    right: 0;
+    animation-delay: 1s;
+    animation: updown 4s ease-in-out infinite;
+    animation-direction: alternate;
   }
 
-  .decoB{
+  .decoB {
     width: 30%;
     bottom: 50%;
     left: 20%;
@@ -1676,47 +1670,45 @@ button{
     animation-direction: alternate;
   }
 
-  .decoC{
+  .decoC {
     width: 30%;
     bottom: 20%;
-    right: 0%;
+    right: 0;
     animation: updown 3s ease-in-out infinite;
     animation-direction: alternate;
   }
 }
 
-.godMainWrapper.posidon{
+.godMainWrapper.posidon {
   width: 78vmin;
   padding-bottom: 145vmin;
   margin-left: -7vmin;
-
-  @include md{
+  @include md {
     width: 57vmin;
     margin-bottom: -3vmin;
     padding-bottom: 103vmin;
   }
-
-  @include lg{
+  @include lg {
     width: 45vmin;
     padding-bottom: 78vmin;
   }
 
-  .halo{
+  .halo {
     width: 38%;
     top: 3%;
     left: 35%;
   }
 
-  .decoA{
-      width: 100%;
-      top: 20%;
-      right: 0;
-      animation-delay: 1s;
-      animation: updown 3s ease-in-out infinite;
-      animation-direction: alternate;
+  .decoA {
+    width: 100%;
+    top: 20%;
+    right: 0;
+    animation-delay: 1s;
+    animation: updown 3s ease-in-out infinite;
+    animation-direction: alternate;
   }
 
-  .decoB{
+  .decoB {
     width: 60%;
     bottom: 20%;
     right: -5%;
@@ -1726,66 +1718,51 @@ button{
   }
 }
 
-
-.godDetails.hide{
+.godDetails.hide {
   opacity: 0;
   visibility: hidden;
   display: none;
   pointer-events: none;
 
-  *{
+  * {
     pointer-events: none !important;
   }
 }
-
-
-
-@keyframes shimmer{
-  from{
+@keyframes shimmer {
+  from {
     opacity: 0.9;
-    // background-color: red;
   }
-  to{
+
+  to {
     opacity: 1;
-    // background-color: blue;
   }
 }
-
-@keyframes sky{
-  from{
+@keyframes sky {
+  from {
     transform: scale(1);
   }
 
-  to{
+  to {
     transform: scale(1.05);
   }
 }
-//
-// @keyframes shimmer2{
-//   from{
-//     filter: brightness(1);
-//     // background-color: red;
-//   }
-//   to{
-//     filter: brightness(1.5);
-//     // background-color: blue;
-//   }
-// }
-.godScene.active{
-  @keyframes sideway{
-    from{
+
+.godScene.active {
+  @keyframes sideway {
+    from {
       transform: translateX(-10%) translateZ(0);
     }
-    to{
+
+    to {
       transform: translateX(10%) translateZ(0);
     }
   }
-
-  @keyframes updown{
-    from{
+  @keyframes updown {
+    from {
       transform: translateY(-5%) translateZ(0);
     }
-    to{
+
+    to {
       transform: translateY(5%) translateZ(0);
     }
   }
